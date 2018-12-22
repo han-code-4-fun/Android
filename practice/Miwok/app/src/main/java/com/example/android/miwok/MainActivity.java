@@ -16,6 +16,7 @@
 package com.example.android.miwok;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -44,6 +45,16 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout =(TabLayout)findViewById(R.id.sliding_tabs);
 
+        /*
+        //shorter way to visual polish tabs without add style information in the xml file,
+        //it's fast but LESS organized!!!!!
+        tabLayout.setTabTextColors(Color.parseColor("#A8A19E"), Color.parseColor("#FFFFFF"));
+        tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#FFFFFF"));
+        tabLayout.setBackgroundColor(Color.parseColor("#4A312A"));
+        */
+
+        //connect the tab layout with the view pager
+        //and be able to set tab name according to position of view pager
         tabLayout.setupWithViewPager(viewPager);
     }
 }

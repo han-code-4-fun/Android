@@ -1,5 +1,6 @@
 package com.example.android.miwok;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -7,8 +8,10 @@ import android.support.v4.app.FragmentPagerAdapter;
 public class MyFragmentPageAdapter extends FragmentPagerAdapter {
 
 
+
         public MyFragmentPageAdapter(FragmentManager fm) {
             super(fm);
+
         }
 
         @Override
@@ -24,12 +27,14 @@ public class MyFragmentPageAdapter extends FragmentPagerAdapter {
             }
         }
 
+
+
         @Override
         public CharSequence getPageTitle(int position) {
             if (position == 0) {
                 return "Numbers";
             } else if (position == 1){
-                return "Families";
+                return "Family";
             } else if (position == 2){
                 return "Colors";
             }else {
