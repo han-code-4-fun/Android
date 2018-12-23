@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
+import android.graphics.drawable.GradientDrawable;
 import java.util.List;
 
 public class EarthquakeListAdapter extends ArrayAdapter<EarthquakeInfo> {
@@ -29,6 +29,8 @@ public class EarthquakeListAdapter extends ArrayAdapter<EarthquakeInfo> {
             // **** important, I should not name the resource file in any Capital letter anymore
             listItem = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent,false);
         }
+
+
 
         EarthquakeInfo thisInfo = getItem(position);
 
@@ -61,6 +63,17 @@ public class EarthquakeListAdapter extends ArrayAdapter<EarthquakeInfo> {
         TextView timeView = (TextView)listItem.findViewById(R.id.timeViewID);
 
         timeView.setText(thisInfo.getTime());
+
+        // Set the proper background color on the magnitude circle.
+        // Fetch the background from the TextView, which is a GradientDrawable.
+        GradientDrawable magnitudeCircle = (GradientDrawable) magView.getBackground();
+
+        // Get the appropriate background color based on the current earthquake magnitude
+        int magnitudeColor = getMagnitudeColor(thisInfo.getMag());
+
+        // Set the color on the magnitude circle
+        magnitudeCircle.setColor(magnitudeColor);
+
 
 
 

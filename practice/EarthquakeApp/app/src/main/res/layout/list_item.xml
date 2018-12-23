@@ -12,11 +12,12 @@
 
         tools:text="mag"
         android:id="@+id/magViewID"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:background="@drawable/magnitude_circle"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:layout_gravity="center_vertical"
+        android:gravity="center"
 
-        android:layout_weight="1"
         />
 
     <LinearLayout
@@ -24,6 +25,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="16dp"
         >
     <TextView
         android:text="distance"
@@ -31,6 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+
 
         />
     <TextView
