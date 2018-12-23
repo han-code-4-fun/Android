@@ -3,6 +3,7 @@ package com.example.android.quakereport;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,54 @@ public class EarthquakeListAdapter extends ArrayAdapter<EarthquakeInfo> {
     public EarthquakeListAdapter(@NonNull Context context, int resourceID, @NonNull List<EarthquakeInfo> inputList) {
         super(context, resourceID, inputList);
         //this.resourceID = resourceID;
+    }
+
+    private int getMagnitudeColor(double magnitude)
+    {
+        int outputColorID = 0;
+        int magFloor = (int)Math.floor(magnitude);
+        switch (magFloor)
+        {
+            case 0:
+            case 1:
+                outputColorID = R.color.magnitude1;
+                break;
+            case 2:
+                outputColorID = R.color.magnitude2;
+                break;
+            case 3:
+                outputColorID = R.color.magnitude3;
+                break;
+            case 4:
+                outputColorID = R.color.magnitude4;
+                break;
+            case 5:
+                outputColorID = R.color.magnitude5;
+                break;
+            case 6:
+                outputColorID = R.color.magnitude6;
+                break;
+            case 7:
+                outputColorID = R.color.magnitude7;
+                break;
+            case 8:
+                outputColorID = R.color.magnitude8;
+                break;
+            case 9:
+                outputColorID = R.color.magnitude9;
+                break;
+            default:
+                outputColorID = R.color.magnitude10plus;
+                break;
+
+
+
+        }
+
+
+        // **** IMPORTANT, need to convert the color
+        // resource ID into a color integer value
+        return ContextCompat.getColor(getContext(), outputColorID);
     }
 
     @NonNull
@@ -75,7 +124,7 @@ public class EarthquakeListAdapter extends ArrayAdapter<EarthquakeInfo> {
         magnitudeCircle.setColor(magnitudeColor);
 
 
-
+        //TODO, background color line 124 cannot be shown, will come back to fix it
 
         return listItem;
     }
