@@ -38,6 +38,20 @@ public class EarthquakeListAdapter extends ArrayAdapter<EarthquakeInfo> {
         //set mag info from current EarthquakeInfo instance
         magView.setText(String.valueOf(thisInfo.getMag()));
 
+        //get the textview for distance into a variable
+        TextView distanceView = (TextView)listItem.findViewById(R.id.distanceViewID);
+        //set distance info from current EarthquakeInfo instance
+        double distance = thisInfo.getDistance();
+        if(distance == -1)
+        {
+            //if there is no distance, distanView will display 'Near the'
+            distanceView.setText(thisInfo.getDirection());
+        }else {
+
+            distanceView.setText(distance+ String.valueOf(thisInfo.getDirection()));
+        }
+
+
         //get the textview for city into a variable
         TextView cityView = (TextView)listItem.findViewById(R.id.cityViewID);
 
