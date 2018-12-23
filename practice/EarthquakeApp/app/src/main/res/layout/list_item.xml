@@ -16,7 +16,11 @@
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_gravity="center_vertical"
+        android:fontFamily="sans-serif-medium"
         android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+
 
         />
 
@@ -31,28 +35,62 @@
     <TextView
         android:text="distance"
         android:id="@+id/distanceViewID"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-medium"
+        android:maxLines="1"
+        android:textAllCaps="true"
+        android:textColor="@color/textColorEarthquakeDetails"
+        android:textSize="12sp"
 
 
         />
     <TextView
         android:text="city"
         android:id="@+id/cityViewID"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="@color/textColorEarthquakeLocation"
+        android:textSize="16sp"
         />
     </LinearLayout>
 
-    <TextView
-        android:text="time"
-        android:id="@+id/timeViewID"
-        android:layout_width="0dp"
+
+    <LinearLayout
+        android:layout_width= "wrap_content"
         android:layout_height="wrap_content"
+
+        android:orientation="vertical"
         android:layout_gravity="center_vertical"
-        android:layout_weight="1"
-        />
+        android:layout_marginLeft="16dp"
+        >
+
+        <TextView
+            android:text="date"
+            android:id="@+id/dateViewID"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/textColorEarthquakeDetails"
+            android:layout_gravity="center_vertical"
+
+            />
+
+        <TextView
+            android:text="time"
+            android:id="@+id/timeViewID"
+            android:layout_width="wrap_content"
+
+            android:layout_gravity="center_vertical"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+
+    </LinearLayout>
 
 </LinearLayout>

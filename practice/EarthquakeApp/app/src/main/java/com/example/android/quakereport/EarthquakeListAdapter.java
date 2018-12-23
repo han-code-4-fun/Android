@@ -25,6 +25,7 @@ public class EarthquakeListAdapter extends ArrayAdapter<EarthquakeInfo> {
     {
         int outputColorID = 0;
         int magFloor = (int)Math.floor(magnitude);
+
         switch (magFloor)
         {
             case 0:
@@ -66,7 +67,7 @@ public class EarthquakeListAdapter extends ArrayAdapter<EarthquakeInfo> {
 
         // **** IMPORTANT, need to convert the color
         // resource ID into a color integer value
-        return ContextCompat.getColor(getContext(), outputColorID);
+        return  outputColorID;
     }
 
     @NonNull
@@ -89,6 +90,17 @@ public class EarthquakeListAdapter extends ArrayAdapter<EarthquakeInfo> {
         //set mag info from current EarthquakeInfo instance
         magView.setText(String.valueOf(thisInfo.getMag()));
 
+        // Set the proper background color on the magnitude circle.
+        // Fetch the background from the TextView, which is a GradientDrawable.
+        GradientDrawable magnitudeCircle = (GradientDrawable) magView.getBackground().getCurrent();
+
+        // Get the appropriate background color based on the current earthquake magnitude
+        int magnitudeColor = getMagnitudeColor(thisInfo.getMag());
+
+        int testID = ContextCompat.getColor(getContext(), magnitudeColor);
+        // Set the color on the magnitude circle
+        magnitudeCircle.setColor(testID);
+
         //get the textview for distance into a variable
         TextView distanceView = (TextView)listItem.findViewById(R.id.distanceViewID);
         //set distance info from current EarthquakeInfo instance
@@ -109,22 +121,23 @@ public class EarthquakeListAdapter extends ArrayAdapter<EarthquakeInfo> {
         //set city info from current EarthquakeInfo instance
         cityView.setText(thisInfo.getCity());
 
+
+        //get the textview for time into a variable
         TextView timeView = (TextView)listItem.findViewById(R.id.timeViewID);
 
+        //set time info from current EarthquakeInfo instance
         timeView.setText(thisInfo.getTime());
 
-        // Set the proper background color on the magnitude circle.
-        // Fetch the background from the TextView, which is a GradientDrawable.
-        GradientDrawable magnitudeCircle = (GradientDrawable) magView.getBackground();
+        //get the textview for time into a variable
+        TextView dateView = (TextView)listItem.findViewById(R.id.dateViewID);
 
-        // Get the appropriate background color based on the current earthquake magnitude
-        int magnitudeColor = getMagnitudeColor(thisInfo.getMag());
-
-        // Set the color on the magnitude circle
-        magnitudeCircle.setColor(magnitudeColor);
+        //set time info from current EarthquakeInfo instance
+        dateView.setText(thisInfo.getDate());
 
 
-        //TODO, background color line 124 cannot be shown, will come back to fix it
+
+
+        //TODO, background color line 102 cannot be shown, will come back to fix it
 
         return listItem;
     }

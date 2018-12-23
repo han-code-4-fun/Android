@@ -1,28 +1,35 @@
 package com.example.android.quakereport;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class EarthquakeInfo
 {
     private double mag;
-    private String city;
-    private String time;
     private double distance;
     private String direction;
+    private String city;
+
+    private String time;
+    private String date;
+
     private DecimalFormat magFormat;
+    private Date dateObj;
+    static private SimpleDateFormat timeFormat  = new SimpleDateFormat("h:mm a");
+    static private SimpleDateFormat dateFormat = new SimpleDateFormat("LLL DD,yyyy ");
 
 
-    public EarthquakeInfo(double mag,
-                          String distance, String time)
+    public EarthquakeInfo(double mag, String distance, long time)
     {
-        magFormat = new DecimalFormat("00.0");
-        this.mag = Double.parseDouble(magFormat.format(mag));
+        //save to mag
+        processMagnitude(mag);
 
-        String[] temp = extractFromDistanceInfo(distance);
-        this.distance = Double.valueOf(temp[0]);
-        this.direction = temp[1];
-        this.city = temp[2];
-        this.time = time;
+        //save to distance, direction and city
+        processDistanceInfo(distance);
+
+        //save to time and date
+        processUNIXTime(time);
     }
 
 
@@ -45,40 +52,68 @@ public class EarthquakeInfo
         return time;
     }
 
+    public String getDate(){return date;}
+
     public String getDirection() {
         return direction;
     }
 
-    private String[] extractFromDistanceInfo(String distance)
+    //format magnitude
+    private void processMagnitude(double magInput)
     {
-        //1st String is distance, 2nd is direction, 3rd is the city name
+        magFormat = new DecimalFormat("00.0");
+        this.mag = Double.parseDouble(magFormat.format(magInput));
+    }
+
+    //extract distance, direction and city info from input
+    private void processDistanceInfo(String distance)
+    {
+
         String[] output = new String[3];
 
         int index = distance.indexOf("km");
         int indexEnd = distance.indexOf("of ");
         //if the distance String has km information,
-        //output both km, direction and city, otherwise
-        //output 'Near the' which will be concanate before city later on
+        //save km, direction and city, otherwise
+        //save 'Near the' which will be concanate before city later on
         if(index == -1)
         {
-            output[0] = "-1";
-            output[1] = "Near the";
-            output[2] = distance;
+            this.distance = -1.0;
+            this.direction = "Near the";
+            this.city = distance;
 
         }else
         {
-            //save the number
-            output[0] = distance.substring(0,index);
+            //save to distance
+            this.distance = Double.valueOf(distance.substring(0,index));
 
             //save the direction after number before city name
-            output[1] = distance.substring(index,indexEnd+3);
+            this.direction = distance.substring(index,indexEnd+3);
 
             //save city name
-            output[2] = distance.substring(indexEnd+3);
+            this.city = distance.substring(indexEnd+3);
         }
 
-        return output;
     }
+
+    //convert from UNIX time to date
+    private void processUNIXTime(long inputTime)
+    {
+
+        try
+        {
+            dateObj = new Date(inputTime);
+            this.time = dateFormat.format(dateObj);
+            this.date = timeFormat.format(dateObj);
+
+        }catch(Exception e)
+        {
+            this.time = "Error parsing time";
+            this.date = "Error parsing date"; ;
+        }
+
+    }
+
 
 
 }
