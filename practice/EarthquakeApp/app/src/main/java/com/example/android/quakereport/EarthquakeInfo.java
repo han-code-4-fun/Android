@@ -1,5 +1,7 @@
 package com.example.android.quakereport;
 
+import java.text.DecimalFormat;
+
 public class EarthquakeInfo
 {
     private double mag;
@@ -7,12 +9,14 @@ public class EarthquakeInfo
     private String time;
     private double distance;
     private String direction;
+    private DecimalFormat magFormat;
 
 
     public EarthquakeInfo(double mag,
                           String distance, String time)
     {
-        this.mag = mag;
+        magFormat = new DecimalFormat("00.0");
+        this.mag = Double.parseDouble(magFormat.format(mag));
 
         String[] temp = extractFromDistanceInfo(distance);
         this.distance = Double.valueOf(temp[0]);
