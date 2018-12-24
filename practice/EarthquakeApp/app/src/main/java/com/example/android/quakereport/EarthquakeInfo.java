@@ -14,13 +14,17 @@ public class EarthquakeInfo
     private String time;
     private String date;
 
+
+
+    private String url;
+
     private DecimalFormat magFormat;
     private Date dateObj;
     static private SimpleDateFormat timeFormat  = new SimpleDateFormat("h:mm a");
     static private SimpleDateFormat dateFormat = new SimpleDateFormat("LLL DD,yyyy ");
 
 
-    public EarthquakeInfo(double mag, String distance, long time)
+    public EarthquakeInfo(double mag, String distance, long time, String inputURL)
     {
         //save to mag
         processMagnitude(mag);
@@ -30,6 +34,8 @@ public class EarthquakeInfo
 
         //save to time and date
         processUNIXTime(time);
+
+        this.url = inputURL;
     }
 
 
@@ -56,6 +62,10 @@ public class EarthquakeInfo
 
     public String getDirection() {
         return direction;
+    }
+
+    public String getUrl() {
+        return url;
     }
 
     //format magnitude
