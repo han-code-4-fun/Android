@@ -21,7 +21,7 @@ public class EarthquakeInfo
     private DecimalFormat magFormat;
     private Date dateObj;
     static private SimpleDateFormat timeFormat  = new SimpleDateFormat("h:mm a");
-    static private SimpleDateFormat dateFormat = new SimpleDateFormat("LLL DD,yyyy ");
+    static private SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyyy ");
 
 
     public EarthquakeInfo(double mag, String distance, long time, String inputURL)

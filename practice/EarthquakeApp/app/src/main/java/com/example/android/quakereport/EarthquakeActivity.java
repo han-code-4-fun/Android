@@ -17,6 +17,7 @@ package com.example.android.quakereport;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -25,19 +26,30 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class EarthquakeActivity extends AppCompatActivity {
 
     public static final String LOG_TAG = EarthquakeActivity.class.getName();
+
+    private static final String URL = "https://earthquake.usgs.gov/fdsnws/event/1/query?" +
+            "format=geojson&eventtype=earthquake&orderby=time&minmag=6&limit=10";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
 
-        // Create a fake list of earthquake locations.
-        ArrayList<EarthquakeInfo> earthquakes = QueryUtils.extractEarthquakes();
+        AsyncDataTask onLoadTask = new AsyncDataTask();
+        onLoadTask.execute(URL);
 
+
+
+
+    }
+
+    public void PopulateDataToView(List<EarthquakeInfo> earthquakes)
+    {
         // Find a reference to the {@link ListView} in the layout
         ListView earthquakeListView = (ListView) findViewById(R.id.myListView);
 
@@ -60,7 +72,21 @@ public class EarthquakeActivity extends AppCompatActivity {
                 startActivity(browseURL);
             }
         });
+    }
 
+    public class AsyncDataTask extends AsyncTask<String, Void, List<EarthquakeInfo>> {
 
+        @Override
+        protected List<EarthquakeInfo> doInBackground(String... strings) {
+
+            List<EarthquakeInfo> earthquakes = QueryUtils.extractEarthquakes(URL);
+
+            return earthquakes;
+        }
+
+        @Override
+        protected void onPostExecute(List<EarthquakeInfo> earthquakeInfos) {
+            PopulateDataToView(earthquakeInfos);
+        }
     }
 }
