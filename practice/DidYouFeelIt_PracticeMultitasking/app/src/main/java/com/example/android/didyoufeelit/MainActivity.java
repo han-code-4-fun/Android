@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         EarthquakeAsync loadAsyncTask = new EarthquakeAsync();
 
-        loadAsyncTask.execute();
+        loadAsyncTask.execute(USGS_REQUEST_URL);
 
 
     }
@@ -58,25 +58,33 @@ public class MainActivity extends AppCompatActivity {
         magnitudeTextView.setText(earthquake.perceivedStrength);
     }
 
-    public class EarthquakeAsync extends AsyncTask<URL, Void, Event> {
+
+    //handle url connection in AsyncTask to avoid the
+    public class EarthquakeAsync extends AsyncTask<String, Void, Event> {
 
 
         @Override
-        protected Event doInBackground(URL... urls) {
+        protected Event doInBackground(String... urls) {
+
+            if(urls.length<1 || urls[0] == null)
+            {
+                return null;
+            }
+
             // Perform the HTTP request for earthquake data and process the response.
-            Event earthquake = Utils.fetchEarthquakeData(USGS_REQUEST_URL);
+            Event earthquake = Utils.fetchEarthquakeData(urls[0]);
 
             return earthquake;
         }
 
         @Override
-        protected void onPostExecute(Event s) {
-            if(s == null)
+        protected void onPostExecute(Event result) {
+            if(result == null)
             {
                 return;
             }
             // Update the information displayed to the user.
-            updateUi(s);
+            updateUi(result);
         }
 
 
