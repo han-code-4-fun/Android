@@ -30,6 +30,8 @@ import java.util.List;
 
 public class EarthquakeActivity extends AppCompatActivity {
 
+    private EarthquakeListAdapter myAdapter;
+
     public static final String LOG_TAG = EarthquakeActivity.class.getName();
 
     private static final String URL = "https://earthquake.usgs.gov/fdsnws/event/1/query?" +
@@ -40,53 +42,66 @@ public class EarthquakeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
 
-        AsyncDataTask onLoadTask = new AsyncDataTask();
-        onLoadTask.execute(URL);
-
-
-
-
-    }
-
-    public void PopulateDataToView(List<EarthquakeInfo> earthquakes)
-    {
         // Find a reference to the {@link ListView} in the layout
         ListView earthquakeListView = (ListView) findViewById(R.id.myListView);
 
         // Create a new {@link ArrayAdapter} of earthquakes
-        final EarthquakeListAdapter adapter = new EarthquakeListAdapter(
-                this, 0, earthquakes);
+        myAdapter = new EarthquakeListAdapter(
+                this, 0, new ArrayList<EarthquakeInfo>());
 
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface
-        earthquakeListView.setAdapter(adapter);
+        earthquakeListView.setAdapter(myAdapter);
 
         earthquakeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // navigate to a more detailed earthquake external webpage if user clicks
-                EarthquakeInfo thisInfo = adapter.getItem(position);
+                EarthquakeInfo thisInfo = myAdapter.getItem(position);
 
                 Intent browseURL = new Intent(Intent.ACTION_VIEW, Uri.parse(thisInfo.getUrl()));
 
                 startActivity(browseURL);
             }
         });
+
+        AsyncDataTask onLoadTask = new AsyncDataTask();
+        onLoadTask.execute(URL);
+
+
     }
+
 
     public class AsyncDataTask extends AsyncTask<String, Void, List<EarthquakeInfo>> {
 
+        //getting data in the background, from internet
         @Override
         protected List<EarthquakeInfo> doInBackground(String... strings) {
 
-            List<EarthquakeInfo> earthquakes = QueryUtils.extractEarthquakes(URL);
+            List<EarthquakeInfo> earthquakes = QueryUtils.extractEarthquakes(strings[0]);
 
             return earthquakes;
         }
 
+
+        //when data is ready, update existing views
         @Override
         protected void onPostExecute(List<EarthquakeInfo> earthquakeInfos) {
             PopulateDataToView(earthquakeInfos);
         }
     }
+
+    public void PopulateDataToView(List<EarthquakeInfo> data)
+    {
+        // Clear the adapter of previous earthquake data
+        myAdapter.clear();
+
+        // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
+        // data set. This will trigger the ListView to update.
+        if (data != null && !data.isEmpty()) {
+
+            myAdapter.addAll(data);
+        }
+    }
+
 }
