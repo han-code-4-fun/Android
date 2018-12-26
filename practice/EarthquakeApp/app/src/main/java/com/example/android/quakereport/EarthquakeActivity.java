@@ -31,11 +31,13 @@ import android.widget.ListView;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Loader;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class EarthquakeActivity extends AppCompatActivity implements LoaderCallbacks<List<EarthquakeInfo>>
         {
@@ -51,6 +53,8 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
 
     TextView emptyView;
 
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +64,8 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
          earthquakeListView = (ListView) findViewById(R.id.myListView);
 
          emptyView = (TextView)findViewById(R.id.emptyView);
+
+        progressBar = (ProgressBar)findViewById(R.id.progressView);
 
         //set empty view
         earthquakeListView.setEmptyView(emptyView);
@@ -106,8 +112,22 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
             @Override
             public void onLoadFinished(Loader<List<EarthquakeInfo>> loader, List<EarthquakeInfo> data)
             {
+                progressBar.setVisibility(View.GONE);
+
+
+                //use this line to test progress bar (it will then last for at least 2 seconds)
+                // and results to emptyView
+                /*try {
+                    TimeUnit.SECONDS.sleep(2);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }*/
+
+
                 emptyView.setText("No earthquakes found");
                 Log.i("onLoadFinished","load finished, next is to populte data to view");
+
+
                 PopulateDataToView(data);
 
             }
@@ -151,6 +171,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
         // data set. This will trigger the ListView to update.
         if (data != null && !data.isEmpty()) {
 
+            //comment out below 2 lines to test progress bar with empty view
             myAdapter.addAll(data);
             myAdapter.notifyDataSetChanged();
         }
