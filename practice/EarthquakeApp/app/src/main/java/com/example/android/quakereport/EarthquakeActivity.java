@@ -22,6 +22,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -82,19 +83,23 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
 
     }
 
+
             @Override
             public Loader<List<EarthquakeInfo>> onCreateLoader(int id, Bundle args) {
+                Log.i("onCreateLoader","add loader");
                 return new EarthquakeInfoLoader(this,URL);
             }
 
             @Override
             public void onLoadFinished(Loader<List<EarthquakeInfo>> loader, List<EarthquakeInfo> data)
             {
+                Log.i("onLoadFinished","load finished, next is to populte data to view");
                 PopulateDataToView(data);
             }
 
             @Override
             public void onLoaderReset(Loader<List<EarthquakeInfo>> loader) {
+                Log.i("onLoaderReset","reset loader");
                 myAdapter.clear();
             }
 

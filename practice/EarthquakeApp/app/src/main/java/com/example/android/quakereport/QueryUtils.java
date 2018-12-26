@@ -41,6 +41,8 @@ public final class QueryUtils {
      */
     public static List<EarthquakeInfo> extractEarthquakes(String inputUrl) {
 
+        Log.i("extractEarthquakes", "method begin");
+
         // Create an empty ArrayList that we can start adding earthquakes to
         List<EarthquakeInfo> earthquakes = new ArrayList<>();
 
@@ -56,6 +58,8 @@ public final class QueryUtils {
             JSONObject rootObj = new JSONObject(makeHTTPRequest(createdURL));
             JSONArray features = rootObj.getJSONArray("features");
 
+            Log.i("extractEarthquakes", "method in try");
+
             for (int i = 0; i < features.length(); i++) {
                 JSONObject current = features.getJSONObject(i);
                 JSONObject properties = current.getJSONObject("properties");
@@ -70,6 +74,9 @@ public final class QueryUtils {
 
                 );
                 earthquakes.add(thisInfo);
+
+                
+                Log.i(LOG_TAG, "method finish one loop");
 
             }
 
