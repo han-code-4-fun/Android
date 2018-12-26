@@ -18,6 +18,8 @@ package com.example.android.quakereport;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -55,10 +57,19 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
 
     ProgressBar progressBar;
 
+    ConnectivityManager cm;
+
+    NetworkInfo myNetInfo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
+
+        cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        //get current network info
+        myNetInfo = cm.getActiveNetworkInfo();
+
 
         // Find a reference to the {@link ListView} in the layout
          earthquakeListView = (ListView) findViewById(R.id.myListView);
@@ -91,7 +102,18 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
         });
 
 
-        getLoaderManager().initLoader(0,null,this).forceLoad();
+        //if there is internet
+        if(myNetInfo != null && myNetInfo.isConnected())
+        {
+            getLoaderManager().initLoader(0,null,this).forceLoad();
+        }else
+        {
+            progressBar.setVisibility(View.GONE);
+            emptyView.setText("No internet connection");
+        }
+
+
+
 
         // old version AsyncTask
          /*   AsyncDataTask onLoadTask = new AsyncDataTask();
