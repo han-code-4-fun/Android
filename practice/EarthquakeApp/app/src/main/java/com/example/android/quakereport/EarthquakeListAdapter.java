@@ -136,6 +136,8 @@ public class EarthquakeListAdapter extends ArrayAdapter<EarthquakeInfo> {
         //set time info from current EarthquakeInfo instance
         dateView.setText(thisInfo.getDate());
 
+
+
         //TODO, background colors of different magnitude cannot be shown, will come back to fix it( line 102)
 
         return listItem;

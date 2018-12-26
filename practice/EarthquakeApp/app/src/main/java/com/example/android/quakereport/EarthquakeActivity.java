@@ -15,6 +15,8 @@
  */
 package com.example.android.quakereport;
 
+import android.content.AsyncTaskLoader;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -25,10 +27,16 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import android.app.LoaderManager;
+import android.app.LoaderManager.LoaderCallbacks;
+import android.content.Loader;
+
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class EarthquakeActivity extends AppCompatActivity {
+public class EarthquakeActivity extends AppCompatActivity implements LoaderCallbacks<List<EarthquakeInfo>>
+        {
 
     private EarthquakeListAdapter myAdapter;
 
@@ -65,14 +73,33 @@ public class EarthquakeActivity extends AppCompatActivity {
             }
         });
 
-        AsyncDataTask onLoadTask = new AsyncDataTask();
-        onLoadTask.execute(URL);
 
+        getLoaderManager().initLoader(0,null,this).forceLoad();
+
+        // old version AsyncTask
+         /*   AsyncDataTask onLoadTask = new AsyncDataTask();
+            onLoadTask.execute(URL);*/
 
     }
 
+            @Override
+            public Loader<List<EarthquakeInfo>> onCreateLoader(int id, Bundle args) {
+                return new EarthquakeInfoLoader(this,URL);
+            }
 
-    public class AsyncDataTask extends AsyncTask<String, Void, List<EarthquakeInfo>> {
+            @Override
+            public void onLoadFinished(Loader<List<EarthquakeInfo>> loader, List<EarthquakeInfo> data)
+            {
+                PopulateDataToView(data);
+            }
+
+            @Override
+            public void onLoaderReset(Loader<List<EarthquakeInfo>> loader) {
+                myAdapter.clear();
+            }
+
+    // old version AsyncTask
+    /*public class AsyncDataTask extends AsyncTask<String, Void, List<EarthquakeInfo>> {
 
         //getting data in the background, from internet
         @Override
@@ -89,7 +116,11 @@ public class EarthquakeActivity extends AppCompatActivity {
         protected void onPostExecute(List<EarthquakeInfo> earthquakeInfos) {
             PopulateDataToView(earthquakeInfos);
         }
-    }
+    }*/
+
+
+    //todo: refactor this project with ViewModel, LiveData and Observer because The loaders have been deprecated
+
 
     public void PopulateDataToView(List<EarthquakeInfo> data)
     {
@@ -101,6 +132,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         if (data != null && !data.isEmpty()) {
 
             myAdapter.addAll(data);
+            myAdapter.notifyDataSetChanged();
         }
     }
 
