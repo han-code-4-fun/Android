@@ -75,7 +75,7 @@ public final class QueryUtils {
                 );
                 earthquakes.add(thisInfo);
 
-                
+
                 Log.i(LOG_TAG, "method finish one loop");
 
             }
