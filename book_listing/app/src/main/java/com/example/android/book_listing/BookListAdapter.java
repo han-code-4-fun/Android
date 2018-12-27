@@ -16,7 +16,7 @@ public class BookListAdapter extends ArrayAdapter<Book> {
 
 
     public BookListAdapter(Context context, int resource, ArrayList<Book> books) {
-        super(context, 0, books);
+        super(context, resource, books);
     }
 
 

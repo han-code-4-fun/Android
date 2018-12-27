@@ -33,6 +33,4 @@ public class EarthquakeInfoLoader extends AsyncTaskLoader<List<EarthquakeInfo>> 
 
         return output;
     }
-
-
 }

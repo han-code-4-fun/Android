@@ -51,13 +51,13 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
     private static final String URL = "https://earthquake.usgs.gov/fdsnws/event/1/query?" +
             "format=geojson&eventtype=earthquake&orderby=time&minmag=6&limit=10";
 
-    ListView earthquakeListView;
+    private ListView earthquakeListView;
 
-    TextView emptyView;
+    private TextView emptyView;
 
-    ProgressBar progressBar;
+    private ProgressBar progressBar;
 
-    ConnectivityManager cm;
+    private ConnectivityManager cm;
 
     NetworkInfo myNetInfo;
 
@@ -125,40 +125,40 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
 
 
 
-            @Override
-            public Loader<List<EarthquakeInfo>> onCreateLoader(int id, Bundle args) {
-                Log.i("onCreateLoader","add loader");
-                return new EarthquakeInfoLoader(this,URL);
-            }
+    @Override
+    public Loader<List<EarthquakeInfo>> onCreateLoader(int id, Bundle args) {
+        Log.i("onCreateLoader","add loader");
+        return new EarthquakeInfoLoader(this,URL);
+    }
 
-            @Override
-            public void onLoadFinished(Loader<List<EarthquakeInfo>> loader, List<EarthquakeInfo> data)
-            {
-                progressBar.setVisibility(View.GONE);
-
-
-                //use this line to test progress bar (it will then last for at least 2 seconds)
-                // and results to emptyView
-                /*try {
-                    TimeUnit.SECONDS.sleep(2);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }*/
+    @Override
+    public void onLoadFinished(Loader<List<EarthquakeInfo>> loader, List<EarthquakeInfo> data)
+    {
+        progressBar.setVisibility(View.GONE);
 
 
-                emptyView.setText("No earthquakes found");
-                Log.i("onLoadFinished","load finished, next is to populte data to view");
+        //use this line to test progress bar (it will then last for at least 2 seconds)
+        // and results to emptyView
+        /*try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }*/
 
 
-                PopulateDataToView(data);
+        emptyView.setText("No earthquakes found");
+        Log.i("onLoadFinished","load finished, next is to populte data to view");
 
-            }
 
-            @Override
-            public void onLoaderReset(Loader<List<EarthquakeInfo>> loader) {
-                Log.i("onLoaderReset","reset loader");
-                myAdapter.clear();
-            }
+        PopulateDataToView(data);
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<List<EarthquakeInfo>> loader) {
+        Log.i("onLoaderReset","reset loader");
+        myAdapter.clear();
+    }
 
     // old version AsyncTask
     /*public class AsyncDataTask extends AsyncTask<String, Void, List<EarthquakeInfo>> {

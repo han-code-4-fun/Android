@@ -85,7 +85,7 @@ public class EarthquakeListAdapter extends ArrayAdapter<EarthquakeInfo> {
 
 
 
-        final EarthquakeInfo thisInfo = getItem(position);
+        EarthquakeInfo thisInfo = getItem(position);
 
         //get the textview for mag into a variable
         TextView magView = (TextView)listItem.findViewById(R.id.magViewID);

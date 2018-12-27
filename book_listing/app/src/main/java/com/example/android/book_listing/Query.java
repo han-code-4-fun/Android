@@ -23,9 +23,9 @@ public final class Query {
     //block future creation of Query instance
     private Query(){  }
 
-    static public List<Book> extractBookInfo(String urlInput)
+    public static List<Book> extractBookInfo(String urlInput)
     {
-        List<Book> books = new ArrayList<Book>();
+        List<Book> books = new ArrayList<>();
 
         URL url = createUrl(urlInput);
 
@@ -131,16 +131,22 @@ public final class Query {
     {
         StringBuilder output = new StringBuilder();
 
-
-
+        try{
             for (int i = 0; i < inputJArray.length(); i++) {
                 output.append(inputJArray.getString(i));
                 if(i<inputJArray.length()-1)
                 {
-                       output.append(", ");
+                    output.append(", ");
                 }
 
             }
+        }catch (Exception e)
+        {
+            Log.e(LOG_TAG,"something is wrong here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        }
+
+
+
 
         return output.toString();
     }
