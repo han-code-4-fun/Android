@@ -108,6 +108,8 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
             getLoaderManager().initLoader(0,null,this).forceLoad();
         }else
         {
+
+            //handle completely no internet situation
             progressBar.setVisibility(View.GONE);
             emptyView.setText("No internet connection");
         }

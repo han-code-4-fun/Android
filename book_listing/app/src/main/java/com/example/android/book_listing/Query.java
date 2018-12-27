@@ -13,6 +13,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,28 +21,31 @@ public final class Query {
 
     private static final String LOG_TAG="Query_Class";
 
+
     //block future creation of Query instance
     private Query(){  }
 
     public static List<Book> extractBookInfo(String urlInput)
     {
+        Log.i(LOG_TAG,"start extractBookInfo");
         List<Book> books = new ArrayList<>();
 
         URL url = createUrl(urlInput);
 
         try
         {
+
             JSONObject rootObj = new JSONObject(makeHTTPRequest(url));
             JSONArray items = rootObj.getJSONArray("items");
 
             for (int i = 0; i < items.length(); i++) {
                 JSONObject current = items.getJSONObject(i);
                 JSONObject volumeInfo = current.getJSONObject("volumeInfo");
-
+                Log.i(LOG_TAG, "for looping");
 
                 Book temp = new Book(
                         volumeInfo.getString("title"),
-                        getMultipleAuthors(volumeInfo.getJSONArray("author")),
+                        getMultipleAuthors(volumeInfo.getJSONArray("authors")),
                         volumeInfo.getString("description"),
                         volumeInfo.getString("infoLink")
                         );
@@ -54,8 +58,16 @@ public final class Query {
         {
             Log.e(LOG_TAG, "error retrieving JSON from getMultipleAuthors()");
 
+        }catch(IOException i)
+        {
+            Log.e(LOG_TAG,"cannot parsing to strings of JSON from makeHTTPRequest()");
         }
-
+        if(books.isEmpty())
+        {
+            Log.e(LOG_TAG,"Book is empty");
+        }else {
+            Log.e(LOG_TAG, books.toString());
+        }
 
         return books;
     }
@@ -71,18 +83,19 @@ public final class Query {
             return null;
         }
 
+        Log.i(LOG_TAG,"finish create URL and return");
         return url;
     }
 
-    private static String makeHTTPRequest(URL url)
+    private static String makeHTTPRequest(URL url) throws IOException
     {
         String JsonOutput = "";
         if(url == null)
         {
             return JsonOutput;
         }
-        HttpURLConnection urlConnection;
-        InputStream inputStream;
+        HttpURLConnection urlConnection = null;
+        InputStream inputStream = null;
         try
         {
             urlConnection = (HttpURLConnection)url.openConnection();
@@ -103,6 +116,18 @@ public final class Query {
 
         }catch (IOException e){
             Log.e(LOG_TAG,"error reading inputstream");
+        }finally {
+            if (urlConnection != null)
+            {
+                urlConnection.disconnect();
+            }
+            if(inputStream != null)
+            {
+                // Closing the input stream could throw an IOException, which is why
+                // the makeHttpRequest(URL url) method signature specifies than an IOException
+                // could be thrown.
+                inputStream.close();
+            }
         }
 
         return JsonOutput;
@@ -113,15 +138,19 @@ public final class Query {
         StringBuilder outputString = new StringBuilder();
         if(inputStream != null)
         {
-            InputStreamReader sReader = new InputStreamReader(inputStream);
+            //**** important to have Charset.forName("UTF-8")
+            InputStreamReader sReader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
             BufferedReader bReader = new BufferedReader(sReader);
             String line = bReader.readLine();
             while(line != null)
             {
                 outputString.append(line);
-                bReader.readLine();
+                line = bReader.readLine();
             }
 
+        }else
+        {
+            Log.e(LOG_TAG," inputStream is null in readFromSteam");
         }
 
         return outputString.toString();
@@ -134,10 +163,15 @@ public final class Query {
         try{
             for (int i = 0; i < inputJArray.length(); i++) {
                 output.append(inputJArray.getString(i));
-                if(i<inputJArray.length()-1)
+                if(i<inputJArray.length()-2)
                 {
                     output.append(", ");
+                }else if(i<inputJArray.length()-1)
+                {
+
+                    output.append(" and ");
                 }
+
 
             }
         }catch (Exception e)

@@ -40,7 +40,8 @@ public class BookListAdapter extends ArrayAdapter<Book> {
         ImageButton googlePlay = listItemView.findViewById(R.id.imageButton);
         googlePlay.setImageResource(R.drawable.google_play_books);
 
-        return super.getView(position, convertView, parent);
+
+        return listItemView;
 
 
     }
