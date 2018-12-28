@@ -25,6 +25,8 @@ public final class Query {
     //block future creation of Query instance
     private Query(){  }
 
+
+    //method that call the rest of methods in the class
     public static List<Book> extractBookInfo(String urlInput)
     {
         Log.i(LOG_TAG,"start extractBookInfo");
@@ -83,6 +85,8 @@ public final class Query {
         return url;
     }
 
+
+
     private static String makeHTTPRequest(URL url) throws IOException
     {
         String JsonOutput = "";
@@ -130,6 +134,8 @@ public final class Query {
 
     }
 
+
+    //use BufferedReader to read inputstream
     private static String readFromSteam(InputStream inputStream) throws IOException {
         StringBuilder outputString = new StringBuilder();
         if(inputStream != null)
@@ -152,6 +158,8 @@ public final class Query {
         return outputString.toString();
     }
 
+
+    //extract and concatenate multiple authors
     private static String getMultipleAuthors(JSONArray inputJArray) throws JSONException
     {
         if(inputJArray != null)
@@ -183,6 +191,7 @@ public final class Query {
     }
 
 
+    //handle JSON property
     private static String handlePropertyName(JSONObject inputObj,String inputProperty) throws JSONException
     {
         if(inputObj.has(inputProperty))
@@ -193,6 +202,8 @@ public final class Query {
         return "";
     }
 
+
+    //handle JSONArray property
     private static JSONArray handleArrayName(JSONObject inputObj,String inputArrayName) throws JSONException
     {
         if(inputObj.has(inputArrayName))
