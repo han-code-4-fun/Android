@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         {
 
 
-            Log.i("Be aware","there is internet connection!");
+            //Log.i("Be aware","there is internet connection!");
             //todo Loaders is deprecated in API 28, need to learn and
             //todo  replace this method with  ViewModel, LiveData and Observer*/
             getLoaderManager().initLoader(0,null,this).forceLoad();
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
     @Override
     public Loader<List<Book>> onCreateLoader(int i, Bundle bundle) {
-        Log.i(test,"gets oncreateloader");
+        //Log.i(test,"gets oncreateloader");
         return new BookLoader(this, url);
     }
 
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
             e.printStackTrace();
         }*/
 
-        Log.i(test, "Gets onloadfinished");
+        //Log.i(test, "Gets onloadfinished");
         PopulateDataToListView(data);
     }
     @Override

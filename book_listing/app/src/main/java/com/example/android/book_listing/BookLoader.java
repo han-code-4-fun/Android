@@ -20,19 +20,19 @@ public class BookLoader extends AsyncTaskLoader<List<Book>> {
     protected void onStartLoading() {
         // must have this line when inherited from AsyncTaskLoader
         super.onStartLoading();
-        Log.i(test,"onstartloading finished");
+        //Log.i(test,"onstartloading finished");
     }
 
     @Override
     public List<Book> loadInBackground() {
-        Log.i(test,"begining of loadinbackground ");
+        //Log.i(test,"begining of loadinbackground ");
         if(url == null)
         {
-            Log.i(test,"url null in loadinbackground ");
+            //Log.i(test,"url null in loadinbackground ");
             return null;
         }
 
-        Log.i(test,"begining to Query.extractBookInfo(url) ");
+        //Log.i(test,"begining to Query.extractBookInfo(url) ");
         List<Book> output = Query.extractBookInfo(url);
 
         return output;

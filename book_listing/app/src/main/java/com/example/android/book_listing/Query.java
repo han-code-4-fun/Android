@@ -2,18 +2,14 @@ package com.example.android.book_listing;
 
 import android.util.Log;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +25,7 @@ public final class Query {
     //method that call the rest of methods in the class
     public static List<Book> extractBookInfo(String urlInput)
     {
-        Log.i(LOG_TAG,"start extractBookInfo");
+        //Log.i(LOG_TAG,"start extractBookInfo");
         List<Book> books = new ArrayList<>();
 
         URL url = createUrl(urlInput);
@@ -38,23 +34,7 @@ public final class Query {
         {
 
             JSONObject rootObj = new JSONObject(makeHTTPRequest(url));
-            JSONArray items = rootObj.getJSONArray("items");
-
-            for (int i = 0; i < items.length(); i++) {
-                JSONObject current = items.getJSONObject(i);
-                JSONObject volumeInfo = current.getJSONObject("volumeInfo");
-                Log.i(LOG_TAG, "for looping");
-
-
-                Book temp = new Book(
-                        handlePropertyName(volumeInfo,"title"),
-                        getMultipleAuthors(handleArrayName(volumeInfo,"authors")),
-                        handlePropertyName(volumeInfo,"description"),
-                        handlePropertyName(volumeInfo,"infoLink")
-                        );
-                books.add(temp);
-
-            }
+            JSONProcessor.assignJSONDataToBookList(books,rootObj);
 
 
         }catch(JSONException j)
@@ -81,7 +61,7 @@ public final class Query {
             return null;
         }
 
-        Log.i(LOG_TAG,"finish create URL and return");
+        //Log.i(LOG_TAG,"finish create URL and return");
         return url;
     }
 
@@ -107,7 +87,7 @@ public final class Query {
             if(urlConnection.getResponseCode() == 200)
             {
                 inputStream = urlConnection.getInputStream();
-                JsonOutput=readFromSteam(inputStream);
+                JsonOutput=JSONProcessor.readFromSteam(inputStream);
             }else
             {
                 Log.e(LOG_TAG,"internet connection error: "+
@@ -135,83 +115,6 @@ public final class Query {
     }
 
 
-    //use BufferedReader to read inputstream
-    private static String readFromSteam(InputStream inputStream) throws IOException {
-        StringBuilder outputString = new StringBuilder();
-        if(inputStream != null)
-        {
-            //**** important to have Charset.forName("UTF-8")
-            InputStreamReader sReader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
-            BufferedReader bReader = new BufferedReader(sReader);
-            String line = bReader.readLine();
-            while(line != null)
-            {
-                outputString.append(line);
-                line = bReader.readLine();
-            }
 
-        }else
-        {
-            Log.e(LOG_TAG," inputStream is null in readFromSteam");
-        }
-
-        return outputString.toString();
-    }
-
-
-    //extract and concatenate multiple authors
-    private static String getMultipleAuthors(JSONArray inputJArray) throws JSONException
-    {
-        if(inputJArray != null)
-        {
-            StringBuilder output = new StringBuilder();
-
-
-            for (int i = 0; i < inputJArray.length(); i++) {
-                output.append(inputJArray.getString(i));
-                if(i<inputJArray.length()-2)
-                {
-                    output.append(", ");
-                }else if(i<inputJArray.length()-1)
-                {
-                    output.append(" and ");
-                }
-
-
-            }
-
-            return  output.toString();
-        }else{
-
-            return "";
-        }
-
-
-
-    }
-
-
-    //handle JSON property
-    private static String handlePropertyName(JSONObject inputObj,String inputProperty) throws JSONException
-    {
-        if(inputObj.has(inputProperty))
-        {
-            return inputObj.getString(inputProperty);
-        }
-        Log.i(LOG_TAG, "no such property: '"+ inputProperty+"'");
-        return "";
-    }
-
-
-    //handle JSONArray property
-    private static JSONArray handleArrayName(JSONObject inputObj,String inputArrayName) throws JSONException
-    {
-        if(inputObj.has(inputArrayName))
-        {
-            return inputObj.getJSONArray(inputArrayName);
-        }
-        Log.e(LOG_TAG,"no such JSON array name, check handleArrayName()");
-        return null;
-    }
 
 }
