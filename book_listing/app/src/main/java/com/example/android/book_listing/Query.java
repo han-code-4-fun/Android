@@ -43,11 +43,12 @@ public final class Query {
                 JSONObject volumeInfo = current.getJSONObject("volumeInfo");
                 Log.i(LOG_TAG, "for looping");
 
+
                 Book temp = new Book(
-                        volumeInfo.getString("title"),
-                        getMultipleAuthors(volumeInfo.getJSONArray("authors")),
-                        volumeInfo.getString("description"),
-                        volumeInfo.getString("infoLink")
+                        handlePropertyName(volumeInfo,"title"),
+                        getMultipleAuthors(handleArrayName(volumeInfo,"authors")),
+                        handlePropertyName(volumeInfo,"description"),
+                        handlePropertyName(volumeInfo,"infoLink")
                         );
                 books.add(temp);
 
@@ -56,18 +57,13 @@ public final class Query {
 
         }catch(JSONException j)
         {
-            Log.e(LOG_TAG, "error retrieving JSON from getMultipleAuthors()");
+            Log.e(LOG_TAG, "error retrieving JSON");
 
         }catch(IOException i)
         {
             Log.e(LOG_TAG,"cannot parsing to strings of JSON from makeHTTPRequest()");
         }
-        if(books.isEmpty())
-        {
-            Log.e(LOG_TAG,"Book is empty");
-        }else {
-            Log.e(LOG_TAG, books.toString());
-        }
+
 
         return books;
     }
@@ -158,9 +154,11 @@ public final class Query {
 
     private static String getMultipleAuthors(JSONArray inputJArray) throws JSONException
     {
-        StringBuilder output = new StringBuilder();
+        if(inputJArray != null)
+        {
+            StringBuilder output = new StringBuilder();
 
-        try{
+
             for (int i = 0; i < inputJArray.length(); i++) {
                 output.append(inputJArray.getString(i));
                 if(i<inputJArray.length()-2)
@@ -168,23 +166,41 @@ public final class Query {
                     output.append(", ");
                 }else if(i<inputJArray.length()-1)
                 {
-
                     output.append(" and ");
                 }
 
 
             }
-        }catch (Exception e)
-        {
-            Log.e(LOG_TAG,"something is wrong here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+            return  output.toString();
+        }else{
+
+            return "";
         }
 
 
 
-
-        return output.toString();
     }
 
 
+    private static String handlePropertyName(JSONObject inputObj,String inputProperty) throws JSONException
+    {
+        if(inputObj.has(inputProperty))
+        {
+            return inputObj.getString(inputProperty);
+        }
+        Log.i(LOG_TAG, "no such property: '"+ inputProperty+"'");
+        return "";
+    }
+
+    private static JSONArray handleArrayName(JSONObject inputObj,String inputArrayName) throws JSONException
+    {
+        if(inputObj.has(inputArrayName))
+        {
+            return inputObj.getJSONArray(inputArrayName);
+        }
+        Log.e(LOG_TAG,"no such JSON array name, check handleArrayName()");
+        return null;
+    }
 
 }
