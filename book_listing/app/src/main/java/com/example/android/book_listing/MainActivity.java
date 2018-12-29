@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     private static final String test="TEST_TAG";
 
     private final static String url =
-            "https://www.googleapis.com/books/v1/volumes?q=android&maxResults=15";
+            "https://www.googleapis.com/books/v1/volumes?q=android&maxResults=40";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,13 +105,6 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
         progressBar.setVisibility(View.GONE);
 
-        //this line is used to test if the progressBar will show before data loaded or not
-        /*try {
-            TimeUnit.SECONDS.sleep(2);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }*/
-
         //Log.i(test, "Gets onloadfinished");
         PopulateDataToListView(data);
     }
@@ -128,8 +121,6 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
         // data set. This will trigger the ListView to update.
         if (data != null && !data.isEmpty()) {
-
-            //comment out below 2 lines to test progress bar with empty view
             myAdapter.addAll(data);
             myAdapter.notifyDataSetChanged();
         }
