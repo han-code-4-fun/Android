@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/searchView"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/search_hint" />
+
+    <LinearLayout
+        android:id="@+id/searchLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/searchView"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="false">
+        <Button
+            android:onClick="increment"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="+"
+             />
+
+
+        <TextView
+            android:id="@+id/quantityID"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="15"
+            android:textAlignment="center" />
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="-"
+            android:onClick="decrement"
+            android:textStyle="bold" />
+
+
+
+
+    </LinearLayout>
+    <Button
+        android:layout_below="@id/searchLayout"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="search"
+        android:textAllCaps="true" />
+
+</RelativeLayout>
