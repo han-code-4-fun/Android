@@ -139,6 +139,12 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
         String minMagnitude = sharedPrefs.getString(
                 getString(R.string.settings_min_magnitude_key),
                 getString(R.string.settings_min_magnitude_default));
+
+        String orderBy = sharedPrefs.getString(
+                getString(R.string.settings_order_by_key),
+                getString(R.string.settings_order_by_default)
+        );
+
         Uri baseUri = Uri.parse(URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
