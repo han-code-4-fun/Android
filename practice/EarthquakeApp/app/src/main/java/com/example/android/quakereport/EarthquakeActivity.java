@@ -18,11 +18,13 @@ package com.example.android.quakereport;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -132,7 +134,20 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
     @Override
     public Loader<List<EarthquakeInfo>> onCreateLoader(int id, Bundle args) {
         Log.i("onCreateLoader","add loader");
-        return new EarthquakeInfoLoader(this,URL);
+
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String minMagnitude = sharedPrefs.getString(
+                getString(R.string.settings_min_magnitude_key),
+                getString(R.string.settings_min_magnitude_default));
+        Uri baseUri = Uri.parse(URL);
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        uriBuilder.appendQueryParameter("format", "geojson");
+        uriBuilder.appendQueryParameter("limit", "10");
+        uriBuilder.appendQueryParameter("minmag", minMagnitude);
+        uriBuilder.appendQueryParameter("orderby", "time");
+
+        return new EarthquakeInfoLoader(this, uriBuilder.toString());
     }
 
     @Override
