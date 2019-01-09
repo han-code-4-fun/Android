@@ -26,7 +26,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class NumbersActivity extends AppCompatActivity {
+public class NumbersActivityzz extends AppCompatActivity {
 
     /** Handles playback of all the sound files */
     private MediaPlayer mMediaPlayer;
@@ -141,7 +141,7 @@ public class NumbersActivity extends AppCompatActivity {
 
                     // Create and setup the {@link MediaPlayer} for the audio resource associated
                     // with the current word
-                    mMediaPlayer = MediaPlayer.create(NumbersActivity.this, word.getAudioResourceId());
+                    mMediaPlayer = MediaPlayer.create(NumbersActivityzz.this, word.getAudioResourceId());
 
                     // Start the audio file
                     mMediaPlayer.start();

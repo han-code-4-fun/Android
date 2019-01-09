@@ -121,8 +121,7 @@ public final class QueryUtils {
 
         HttpURLConnection urlConnect = null;
         InputStream inputStream = null;
-        try
-        {
+
             urlConnect = (HttpURLConnection) inputUrl.openConnection();
             urlConnect.setRequestMethod("GET");
             urlConnect.setReadTimeout(10000 /* milliseconds */);
@@ -139,10 +138,7 @@ public final class QueryUtils {
                         urlConnect.getResponseCode());
             }
 
-        }catch (IOException e)
-        {
-            Log.e(LOG_TAG, "Problem retrieving the earthquake JSON results.", e);
-        }finally {
+
             if (urlConnect != null)
             {
                 urlConnect.disconnect();
@@ -154,7 +150,7 @@ public final class QueryUtils {
                 // could be thrown.
                 inputStream.close();
             }
-        }
+
 
 
         return JsonOutput;

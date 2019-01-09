@@ -25,8 +25,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle b) {
+        super.onCreate(b);
 
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_main);
@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
             // The code in this method will be executed when the numbers category is clicked on.
             @Override
             public void onClick(View view) {
-                // Create a new intent to open the {@link NumbersActivity}
-                Intent numbersIntent = new Intent(MainActivity.this, NumbersActivity.class);
+                // Create a new intent to open the {@link NumbersActivityzz}
+                Intent numbersIntent = new Intent(MainActivity.this, NumbersActivityzz.class);
 
                 // Start the new activity
                 startActivity(numbersIntent);
