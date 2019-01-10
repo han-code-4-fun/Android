@@ -24,6 +24,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,6 +54,36 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout =(TabLayout)findViewById(R.id.sliding_tabs);
 
+        OkHttpClient testClient  = new OkHttpClient();
+        String testUrl  = "https://reqres.in/api/users?page=2";
+        Request request = new Request.Builder()
+                .url(testUrl)
+                .build();
+
+        //enqueue will run the method in the backend
+        testClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Toast.makeText(MainActivity.this,"connection failed", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if(response.isSuccessful())
+                {
+                    //todo add stringbuilder and/or bufferedreader may be better?
+                    final String myResponse = response.body().string();
+
+                    //because this call is on backend, so we need to call the main thread
+                    MainActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(MainActivity.this, myResponse,Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+            }
+        });
         /*
         //shorter way to visual polish tabs without add style information in the xml file,
         //it's fast but LESS organized!!!!!
