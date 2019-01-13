@@ -1,4 +1,5 @@
 # Sandwich Club Project Starter Code
+## note that this project does not handle rotation properly or does not restore the data using onSaveInstanceState/onRestoreInstanceState
 
 ## Project Overview
 In this project, you will complete the **Sandwich Club** app to
