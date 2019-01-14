@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
      * "pretty" state when the reset menu item is clicked.
      */
     private GreenAdapter mAdapter;
-    private RecyclerView mNumbersList;
+    private RecyclerView recyclerViewRoot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,32 +40,32 @@ public class MainActivity extends AppCompatActivity {
          * Using findViewById, we get a reference to our RecyclerView from xml. This allows us to
          * do things like set the adapter of the RecyclerView and toggle the visibility.
          */
-        mNumbersList = (RecyclerView) findViewById(R.id.rv_numbers);
+        recyclerViewRoot = (RecyclerView) findViewById(R.id.rv_numbers);
 
         /*
          * A LinearLayoutManager is responsible for measuring and positioning item views within a
          * RecyclerView into a linear list. This means that it can produce either a horizontal or
          * vertical list depending on which parameter you pass in to the LinearLayoutManager
          * constructor. By default, if you don't specify an orientation, you get a vertical list.
-         * In our case, we want a vertical list, so we don't need to pass in an orientation flag to
+         * In our case, we want a vertical list, so weaZDGJK[`UHJNM  don't need to pass in an orientation flag to
          * the LinearLayoutManager constructor.
-         *
+         *  `
          * There are other LayoutManagers available to display your data in uniform grids,
          * staggered grids, and more! See the developer documentation for more details.
          */
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        mNumbersList.setLayoutManager(layoutManager);
+        recyclerViewRoot.setLayoutManager(layoutManager);
 
         /*
          * Use this setting to improve performance if you know that changes in content do not
          * change the child layout size in the RecyclerView
          */
-        mNumbersList.setHasFixedSize(true);
+        recyclerViewRoot.setHasFixedSize(true);
 
         /*
          * The GreenAdapter is responsible for displaying each item in the list.
          */
         mAdapter = new GreenAdapter(NUM_LIST_ITEMS);
-        mNumbersList.setAdapter(mAdapter);
+        recyclerViewRoot.setAdapter(mAdapter);
     }
 }
