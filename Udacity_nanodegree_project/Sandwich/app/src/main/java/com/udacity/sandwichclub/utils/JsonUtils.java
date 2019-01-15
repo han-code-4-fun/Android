@@ -13,7 +13,14 @@ import java.util.List;
 
 public final class JsonUtils {
 
-    private final static String LOG_TAG = "JsonUtilis";
+    private final static String LOG_TAG = "JsonUtils";
+    public final static String name="name";
+    public final static String nameM="mainName";
+    public final static String knowas="alsoKnownAs";
+    public final static String origin="placeOfOrigin";
+    public final static String descrip="description";
+    public final static String image="image";
+    public final static String ingre="ingredients";
 
     public static Sandwich parseSandwichJson(String input)
     {
@@ -21,15 +28,15 @@ public final class JsonUtils {
         Sandwich output = null;
         try{
             JSONObject elementRoot = new JSONObject(input);
-            JSONObject name = elementRoot.getJSONObject("name");
+            JSONObject element = elementRoot.getJSONObject(name);
 
             output = new Sandwich(
-                    name.getString("mainName"),
-                    fromJSONObjToList(name, "alsoKnownAs"),
-                    elementRoot.getString("placeOfOrigin"),
-                    elementRoot.getString("description"),
-                    elementRoot.getString("image"),
-                    fromJSONObjToList(elementRoot, "ingredients")
+                    element.optString(nameM),
+                    fromJSONObjToList(element, knowas),
+                    elementRoot.optString(origin),
+                    elementRoot.optString(descrip),
+                    elementRoot.optString(image),
+                    fromJSONObjToList(elementRoot, ingre)
             );
         }catch(JSONException j)
         {
@@ -48,11 +55,11 @@ public final class JsonUtils {
         JSONArray temp = inputObj.getJSONArray(property);
         if(temp!=null){
             for (int i = 0; i < temp.length(); i++) {
-                  output.add(temp.getString(i));
+                output.add(temp.getString(i));
             }
         }else
         {
-           output.add("N/A");
+            output.add("N/A");
         }
         return output;
     }
