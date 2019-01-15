@@ -26,35 +26,51 @@ import android.widget.TextView;
  * {@link ForecastAdapter} exposes a list of weather forecasts to a
  * {@link android.support.v7.widget.RecyclerView}
  */
-public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapterViewHolder> {
+public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.MyViewHolder> {
 
     private String[] mWeatherData;
+    private final MyClickHandler clickHandler;
 
-    // TODO (3) Create a final private ForecastAdapterOnClickHandler called mClickHandler
-
-    // TODO (1) Add an interface called ForecastAdapterOnClickHandler
-    // TODO (2) Within that interface, define a void method that access a String as a parameter
-
-    // TODO (4) Add a ForecastAdapterOnClickHandler as a parameter to the constructor and store it in mClickHandler
-    public ForecastAdapter() {
-
-    }
-
-    // TODO (5) Implement OnClickListener in the ForecastAdapterViewHolder class
     /**
      * Cache of the children views for a forecast list item.
      */
-    public class ForecastAdapterViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder
+            implements View.OnClickListener {
         public final TextView mWeatherTextView;
 
-        public ForecastAdapterViewHolder(View view) {
+        public MyViewHolder(View view) {
             super(view);
             mWeatherTextView = (TextView) view.findViewById(R.id.tv_weather_data);
-            // TODO (7) Call setOnClickListener on the view passed into the constructor (use 'this' as the OnClickListener)
+            // (7) Call setOnClickListener on the view passed into the constructor (use 'this' as the OnClickListener)
+            view.setOnClickListener(this);
         }
 
-        // TODO (6) Override onClick, passing the clicked day's data to mClickHandler via its onClick method
+
+        public void onClick(View v)
+        {
+            int position =getAdapterPosition();
+            clickHandler.processString(mWeatherData[position]);
+        }
+
+
+        //  (6) Override processString, passing the clicked day's data to mClickHandler via its processString method
+
     }
+
+
+
+    public interface MyClickHandler {
+        void processString(String input);
+    }
+
+
+    //(4) Add a ForecastAdapterOnClickHandler as a parameter to the constructor and store it in mClickHandler
+    public ForecastAdapter(MyClickHandler inputClickHandler) {
+        clickHandler =inputClickHandler;
+    }
+
+    //(5) Implement OnClickListener in the MyViewHolder class
+
 
     /**
      * This gets called when each new ViewHolder is created. This happens when the RecyclerView
@@ -65,17 +81,17 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
      *                  can use this viewType integer to provide a different layout. See
      *                  {@link android.support.v7.widget.RecyclerView.Adapter#getItemViewType(int)}
      *                  for more details.
-     * @return A new ForecastAdapterViewHolder that holds the View for each list item
+     * @return A new MyViewHolder that holds the View for each list item
      */
     @Override
-    public ForecastAdapterViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         Context context = viewGroup.getContext();
         int layoutIdForListItem = R.layout.forecast_list_item;
         LayoutInflater inflater = LayoutInflater.from(context);
         boolean shouldAttachToParentImmediately = false;
 
         View view = inflater.inflate(layoutIdForListItem, viewGroup, shouldAttachToParentImmediately);
-        return new ForecastAdapterViewHolder(view);
+        return new MyViewHolder(view);
     }
 
     /**
@@ -84,14 +100,14 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
      * details for this particular position, using the "position" argument that is conveniently
      * passed into us.
      *
-     * @param forecastAdapterViewHolder The ViewHolder which should be updated to represent the
+     * @param myViewHolder The ViewHolder which should be updated to represent the
      *                                  contents of the item at the given position in the data set.
      * @param position                  The position of the item within the adapter's data set.
      */
     @Override
-    public void onBindViewHolder(ForecastAdapterViewHolder forecastAdapterViewHolder, int position) {
+    public void onBindViewHolder(MyViewHolder myViewHolder, int position) {
         String weatherForThisDay = mWeatherData[position];
-        forecastAdapterViewHolder.mWeatherTextView.setText(weatherForThisDay);
+        myViewHolder.mWeatherTextView.setText(weatherForThisDay);
     }
 
     /**
