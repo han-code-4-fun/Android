@@ -41,7 +41,7 @@ public class MainFragment extends Fragment implements android.app.LoaderManager.
         //todo Loaders is deprecated in API 28, need to learn and
         //todo  replace this method with  ViewModel, LiveData and Observer
         //todo do it after completion future advanced courses
-        getLoaderManager().initLoader(0,null, savedInstanceState.get).forceLoad();
+        getLoaderManager().initLoader(0,null, ).forceLoad();
 
 
     }
