@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -122,6 +123,8 @@ public class ColorsActivity extends AppCompatActivity {
                 // Release the media player if it currently exists because we are about to
                 // play a different sound file
                 releaseMediaPlayer();
+
+
 
                 // Get the {@link Word} object at the given position the user clicked on
                 Word word = words.get(position);

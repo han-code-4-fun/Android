@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -65,11 +66,29 @@ public class WordAdapter extends ArrayAdapter<Word>  {
         // the Miwok TextView.
         miwokTextView.setText(currentWord.getMiwokTranslationId());
 
+        //testing onclicklistener
+        /*miwokTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(v.getContext(), "miwok",Toast.LENGTH_LONG).show();}
+
+        });*/
+
         // Find the TextView in the list_item.xml layout with the ID default_text_view.
         TextView defaultTextView = (TextView) listItemView.findViewById(R.id.default_text_view);
         // Get the default translation from the currentWord object and set this text on
         // the default TextView.
         defaultTextView.setText(currentWord.getDefaultTranslationId());
+
+        //testing onclicklistener
+        /*defaultTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                    Toast.makeText(v.getContext(), "default",Toast.LENGTH_LONG).show();}
+
+        });*/
 
         // Find the ImageView in the list_item.xml layout with the ID image.
         ImageView imageView = (ImageView) listItemView.findViewById(R.id.image);
