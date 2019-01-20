@@ -40,12 +40,12 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
 
     private static final String TAG = GreenAdapter.class.getSimpleName();
 
-    // COMPLETED (3) Create a final private ListItemClickListener called mOnClickListener
+    // COMPLETED (3) Create a final private CustomListItemClickListener called mOnClickListener
     /*
      * An on-click handler that we've defined to make it easy for an Activity to interface with
      * our RecyclerView
      */
-    final private ListItemClickListener mOnClickListener;
+    final private CustomListItemClickListener mOnClickListener;
 
     /*
      * The number of ViewHolders that have been created. Typically, you can figure out how many
@@ -93,24 +93,24 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
 
     private int mNumberItems;
 
-    // COMPLETED (1) Add an interface called ListItemClickListener
-    // COMPLETED (2) Within that interface, define a void method called onListItemClick that takes an int as a parameter
+    // COMPLETED (1) Add an interface called CustomListItemClickListener
+    // COMPLETED (2) Within that interface, define a void method called customOnListItemClick that takes an int as a parameter
     /**
      * The interface that receives onClick messages.
      */
-    public interface ListItemClickListener {
-        void onListItemClick(int clickedItemIndex);
+    public interface CustomListItemClickListener {
+        void customOnListItemClick(int clickedItemIndex);
     }
 
-    // COMPLETED (4) Add a ListItemClickListener as a parameter to the constructor and store it in mOnClickListener
+    // COMPLETED (4) Add a CustomListItemClickListener as a parameter to the constructor and store it in mOnClickListener
     /**
      * Constructor for GreenAdapter that accepts a number of items to display and the specification
-     * for the ListItemClickListener.
+     * for the CustomListItemClickListener.
      *
      * @param numberOfItems Number of items to display in list
      * @param listener Listener for list item clicks
      */
-    public GreenAdapter(int numberOfItems, ListItemClickListener listener) {
+    public GreenAdapter(int numberOfItems, CustomListItemClickListener listener) {
         mNumberItems = numberOfItems;
         mOnClickListener = listener;
         viewHolderCount = 0;
@@ -215,7 +215,7 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
         }
 
 
-        // COMPLETED (6) Override onClick, passing the clicked item's position (getAdapterPosition()) to mOnClickListener via its onListItemClick method
+        // COMPLETED (6) Override onClick, passing the clicked item's position (getAdapterPosition()) to mOnClickListener via its customOnListItemClick method
         /**
          * Called whenever a user clicks on an item in the list.
          * @param v The View that was clicked
@@ -223,7 +223,7 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
         @Override
         public void onClick(View v) {
             int clickedPosition = getAdapterPosition();
-            mOnClickListener.onListItemClick(clickedPosition);
+            mOnClickListener.customOnListItemClick(clickedPosition);
         }
     }
 }
