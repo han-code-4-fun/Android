@@ -17,7 +17,7 @@ public class FlashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flash);
 
-        //a button that can be used to skip flash, which in the future, this can be a dynamical image such as an ad
+        //countriesAdapter button that can be used to skip flash, which in the future, this can be countriesAdapter dynamical image such as an ad
         Button skipButton = findViewById(R.id.skip_button);
 
         ImageView flash = findViewById(R.id.flash_iv);
