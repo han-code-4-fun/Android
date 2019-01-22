@@ -1,7 +1,9 @@
 package asynctask;
 
 import android.os.AsyncTask;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 
@@ -13,15 +15,19 @@ public class CountryAsyncTask extends AsyncTask<Void, Void, ArrayList<Country>> 
     ArrayAdapter<String> citiesAdapter;
     ArrayList<String> countriesCode;
 
+    private ProgressBar progressBar;
+
 
     public CountryAsyncTask(
             ArrayAdapter<String> countriesAdapter,
             ArrayAdapter<String> citiesAdapter,
-            ArrayList<String> countriesCode)
+            ArrayList<String> countriesCode,
+            ProgressBar progressBar)
     {
         this.countriesAdapter = countriesAdapter;
         this.citiesAdapter = citiesAdapter;
         this.countriesCode = countriesCode;
+        this.progressBar =progressBar;
     }
 
     @Override
@@ -42,6 +48,7 @@ public class CountryAsyncTask extends AsyncTask<Void, Void, ArrayList<Country>> 
 
     private void updateCountriesAdapterAndDefaultCity(ArrayList<Country> inputList)
     {
+        progressBar.setVisibility(View.INVISIBLE);
 
         countriesAdapter.clear();
         for (Country c :
@@ -51,7 +58,9 @@ public class CountryAsyncTask extends AsyncTask<Void, Void, ArrayList<Country>> 
         }
         countriesAdapter.notifyDataSetChanged();
 
-        CityAsyncTask loadInitialCities = new CityAsyncTask(countriesCode.get(0), citiesAdapter);
+
+        progressBar.setVisibility(View.VISIBLE);
+        CityAsyncTask loadInitialCities = new CityAsyncTask(countriesCode.get(0), citiesAdapter,progressBar);
         loadInitialCities.execute();
     }
 }

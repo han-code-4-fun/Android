@@ -42,6 +42,7 @@ public class FlashActivity extends AppCompatActivity {
             }
         };
 
+        //a skip button allows user enter mainactivity directly
         skipButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

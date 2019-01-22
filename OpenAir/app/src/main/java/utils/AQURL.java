@@ -8,6 +8,8 @@ import java.net.URL;
 
 public final class AQURL {
 
+    //use a seperate class to build and return varies URL
+
     public static final String LOG_TAG =AQURL.class.getSimpleName();
 
     //following variables are used by Uri.parse
@@ -21,6 +23,19 @@ public final class AQURL {
     public static final String PARAM_COUNTRY="country";
     public static final String PARAM_CITY="city";
     public static final String PARAM_LOCATION="location";
+
+    public static final String PARAM_ORDERBY = "order_by";
+    public static final String PARAM_SORT= "sort";
+    public static final String PARAM_LIMIT = "limit";
+
+    public static final String VALUE_DATE = "date";
+    public static final String VALUE_DESC = "desc";
+    public static final String VALUE_ASC = "asc";
+
+    public static final String VALUE_CITY="city";
+
+    public static final String VALUE_LOCATION="location";
+
 
 
     public static URL getListCountriesURL()
@@ -36,6 +51,8 @@ public final class AQURL {
         Uri input = Uri.parse(BASE_URL).buildUpon()
                     .appendPath(PATH_CITY)
                     .appendQueryParameter(PARAM_COUNTRY,countryCode)
+                    .appendQueryParameter(PARAM_ORDERBY, VALUE_CITY)
+                    .appendQueryParameter(PARAM_SORT,VALUE_ASC)
                     .build();
 
         return URLCreator(input);
@@ -47,6 +64,8 @@ public final class AQURL {
                 .appendPath(PATH_LOCATION)
                 .appendQueryParameter(PARAM_COUNTRY,countryCode)
                 .appendQueryParameter(PARAM_CITY, cityName)
+                .appendQueryParameter(PARAM_ORDERBY, VALUE_CITY)
+                .appendQueryParameter(PARAM_SORT,VALUE_ASC)
                 .build();
 
         return URLCreator(input);
@@ -55,17 +74,22 @@ public final class AQURL {
     public static URL getDetailMeasurementURL(
             String countryCode, String cityName,String location)
     {
+        //based on requirement, only show 7 results
         Uri input = Uri.parse(BASE_URL).buildUpon()
                 .appendPath(PATH_MEASURE)
                 .appendQueryParameter(PARAM_COUNTRY,countryCode)
                 .appendQueryParameter(PARAM_CITY, cityName)
                 .appendQueryParameter(PARAM_LOCATION, location)
+                .appendQueryParameter(PARAM_ORDERBY, VALUE_DATE)
+                .appendQueryParameter(PARAM_SORT, VALUE_DESC)
+                .appendQueryParameter(PARAM_LIMIT, "7")
                 .build();
 
         return URLCreator(input);
     }
 
 
+    //re-useable function to handle finally step of creating a URL
     public static URL URLCreator(Uri inputUri)
     {
         URL output = null;

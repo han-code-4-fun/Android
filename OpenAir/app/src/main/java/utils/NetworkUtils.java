@@ -10,65 +10,81 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
 
+import okhttp3.Call;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public final class NetworkUtils {
     private static final String LOG_TAG = NetworkUtils.class.getSimpleName();
+    //custom class that handles the HttpURLConnection, InputStream and output String which comes from URL
 
-    //use BufferedReader to read inputstream
-    private static String readFromSteam(InputStream inputStream) throws IOException {
-        StringBuilder outputString = new StringBuilder();
-        if(inputStream != null)
+    //return string from inputStream using bufferedReader
+    private static String readFromStream(InputStream stream)throws IOException
+    {
+        StringBuilder outputString= new StringBuilder();
+        if(stream != null)
         {
-            InputStreamReader sReader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
-            BufferedReader bReader = new BufferedReader(sReader);
-            String line = bReader.readLine();
-            while(line != null)
+            InputStreamReader sReader = new InputStreamReader(stream, Charset.forName("UTF-8"));
+            BufferedReader buffReader = new BufferedReader(sReader);
+            String line = buffReader.readLine();
+            while(line!=null)
             {
                 outputString.append(line);
-                line = bReader.readLine();
+                line = buffReader.readLine();
             }
-        }else
-        {
-            Log.e(LOG_TAG," inputStream is null in readFromSteam");
         }
+
 
         return outputString.toString();
     }
 
-
     //output String which can be used to build JSONObject
     //by getting data from URL
-    private static String getJSONFromURL(URL url) throws IOException
+    public static String getJSONFromURL(URL inputUrl) throws IOException
     {
-        String JsonOutput = "";
-        if(url == null){return JsonOutput; }
 
-        HttpURLConnection urlConnect = null;
+        String JsonOutput = "";
+        if(inputUrl == null) {return JsonOutput;}
+        HttpURLConnection urlConnection = null;
         InputStream inputStream = null;
         try
         {
-            urlConnect = (HttpURLConnection)url.openConnection();
-            urlConnect.setReadTimeout(10000);
-            urlConnect.setConnectTimeout(15000);
-            urlConnect.setRequestMethod("GET");
-            urlConnect.connect();
+            urlConnection = (HttpURLConnection)inputUrl.openConnection();
+            urlConnection.setReadTimeout(10000);
+            urlConnection.setConnectTimeout(15000);
+            urlConnection.setRequestMethod("GET");
 
-            if(urlConnect.getResponseCode() == 200)
+            Log.e(LOG_TAG, "urlConnection ready");
+            urlConnection.connect();
+            Log.e(LOG_TAG, "urlConnection connecting");
+            Log.e(LOG_TAG, "urlConnection connectcode: "+urlConnection.getResponseCode());
+            if(urlConnection.getResponseCode() == 200)
             {
-                inputStream = urlConnect.getInputStream();
-                JsonOutput=readFromSteam(inputStream);
+                inputStream = urlConnection.getInputStream();
+                JsonOutput=readFromStream(inputStream);
             }else
             {
                 Log.e(LOG_TAG,"internet connection error: "+
-                        urlConnect.getResponseCode());
+                        urlConnection.getResponseCode());
             }
 
         }catch (IOException e){
             Log.e(LOG_TAG,"error reading inputstream");
         }finally {
-            if (urlConnect != null){urlConnect.disconnect();}
-            if(inputStream != null){inputStream.close();}
+            if (urlConnection != null)
+            {
+                urlConnection.disconnect();
+            }
+            if(inputStream != null)
+            {
+                // Closing the input stream could throw an IOException, which is why
+                // the makeHttpRequest(URL url) method signature specifies than an IOException
+                // could be thrown.
+                inputStream.close();
+            }
         }
-        return JsonOutput;
 
+        return JsonOutput;
     }
 }

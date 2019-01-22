@@ -2,11 +2,12 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clayout_country"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#A7FFEB">
@@ -106,11 +107,20 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ProgressBar
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:visibility="invisible"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/emptyView"
+
         android:layout_gravity="center"
+
+        android:textAppearance="?android:textAppearanceMedium"
+        />
+    <ProgressBar
+        android:id="@+id/progressView"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         />
 
 </FrameLayout>

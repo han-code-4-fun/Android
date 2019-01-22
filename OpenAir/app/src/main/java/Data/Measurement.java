@@ -1,31 +1,33 @@
 package Data;
 
-public class DetailAQ {
+import utils.MyDateUtils;
+
+public class Measurement {
     private String city;
     private String countryCode;
     private String location;
-    private String date_utc;
+    private String date;
     private String param;
     private double value;
     private String unit;
     private double longitude;
     private double latitude;
 
-    public DetailAQ(String inputCountryCode,
-                    String inputCity,
-                    String inputLocation,
-                    String inputDate,
-                    String inputParam,
-                    double inputValue,
-                    String inputUnit,
-                    double inputLong,
-                    double inputLat
+    public Measurement(String inputCountryCode,
+                       String inputCity,
+                       String inputLocation,
+                       String inputDate,
+                       String inputParam,
+                       double inputValue,
+                       String inputUnit,
+                       double inputLong,
+                       double inputLat
                     )
     {
         location = inputLocation;
         city = inputCity;
         countryCode = inputCountryCode;
-        date_utc = inputDate;
+        date = MyDateUtils.reformatDate(inputDate);
         param = inputParam;
         value = inputValue;
         unit = inputUnit;
@@ -39,7 +41,7 @@ public class DetailAQ {
 
     public String getLocation() { return location;    }
 
-    public String getDate_utc() {return date_utc;    }
+    public String getDate() {return date;    }
 
     public String getParam() { return param;    }
 
