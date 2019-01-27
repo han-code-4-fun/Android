@@ -14,12 +14,14 @@ import okhttp3.Request;
 import popularmovies.examlple.com.openair.R;
 import utils.JSONUtils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -34,6 +36,9 @@ import java.util.List;
 
 public class CountryActivity extends AppCompatActivity {
 
+    private Handler handlerBackPress;
+
+    private int numOfTimesBackPressed;
 
     //spinner contains countries list and cities' list
     private Spinner countriesSpinner, citiesSpinner;
@@ -52,12 +57,17 @@ public class CountryActivity extends AppCompatActivity {
     private ConnectivityManager cm;
     private NetworkInfo myNetInfo;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_country);
 
+
         layoutInitilization();
+
+        numOfTimesBackPressed = 0;
 
 
 
@@ -83,6 +93,32 @@ public class CountryActivity extends AppCompatActivity {
 
     }
 
+
+    @Override
+    public void onBackPressed() {
+
+        numOfTimesBackPressed += 1;
+
+        if(numOfTimesBackPressed <= 1)
+        {
+            Toast.makeText(
+                    this,
+                    "Tap one more time to exit app.",
+                    Toast.LENGTH_SHORT).show();
+
+            handlerBackPress = new Handler();
+            final Runnable countDownTwoSecond = new Runnable() {
+                @Override
+                public void run() {
+                    numOfTimesBackPressed -= 1;
+                }
+            };
+            handlerBackPress.postDelayed(countDownTwoSecond, 2000);
+        }else{
+            super.onBackPressed();
+        }
+
+    }
 
     private void layoutInitilization()
     {
@@ -166,6 +202,7 @@ public class CountryActivity extends AppCompatActivity {
             }
         });
     }
+
 
 
 
