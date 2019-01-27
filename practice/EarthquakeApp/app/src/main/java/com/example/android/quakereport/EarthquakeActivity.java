@@ -15,14 +15,12 @@
  */
 package com.example.android.quakereport;
 
-import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -31,19 +29,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Loader;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
+import com.example.android.quakereport.data.EarthquakeInfo;
+import com.example.android.quakereport.data.EarthquakeInfoLoader;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class EarthquakeActivity extends AppCompatActivity implements LoaderCallbacks<List<EarthquakeInfo>>
         {
@@ -119,12 +117,6 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
         }
 
 
-
-
-        // old version AsyncTask
-         /*   AsyncDataTask onLoadTask = new AsyncDataTask();
-            onLoadTask.execute(URL);*/
-
     }
 
 
@@ -133,9 +125,10 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
 
     @Override
     public Loader<List<EarthquakeInfo>> onCreateLoader(int id, Bundle args) {
-        Log.i("onCreateLoader","add loader");
+
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
         String minMagnitude = sharedPrefs.getString(
                 getString(R.string.settings_min_magnitude_key),
                 getString(R.string.settings_min_magnitude_default));
@@ -162,8 +155,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
         progressBar.setVisibility(View.GONE);
 
 
-        //use this line to test progress bar (it will then last for at least 2 seconds)
-        // and results to emptyView
+        //following 4 lines was to test progress bar
         /*try {
             TimeUnit.SECONDS.sleep(2);
         } catch (InterruptedException e) {
@@ -202,28 +194,6 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
         return super.onOptionsItemSelected(item);
     }
 
-    // old version AsyncTask
-    /*public class AsyncDataTask extends AsyncTask<String, Void, List<EarthquakeInfo>> {
-
-        //getting data in the background, from internet
-        @Override
-        protected List<EarthquakeInfo> doInBackground(String... strings) {
-
-            List<EarthquakeInfo> earthquakes = QueryUtils.extractEarthquakes(strings[0]);
-
-            return earthquakes;
-        }
-
-
-        //when data is ready, update existing views
-        @Override
-        protected void onPostExecute(List<EarthquakeInfo> earthquakeInfos) {
-            PopulateDataToView(earthquakeInfos);
-        }
-    }*/
-
-
-    //todo: refactor this project with ViewModel, LiveData and Observer because The loaders have been deprecated
 
 
     public void PopulateDataToView(List<EarthquakeInfo> data)
@@ -231,11 +201,9 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
         // Clear the adapter of previous earthquake data
         myAdapter.clear();
 
-        // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
-        // data set. This will trigger the ListView to update.
+        // update adapter if there is data
         if (data != null && !data.isEmpty()) {
 
-            //comment out below 2 lines to test progress bar with empty view
             myAdapter.addAll(data);
             myAdapter.notifyDataSetChanged();
         }

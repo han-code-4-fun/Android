@@ -1,8 +1,10 @@
-package com.example.android.quakereport;
+package com.example.android.quakereport.data;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.util.Log;
+
+import com.example.android.quakereport.ui.QueryUtils;
 
 import java.util.List;
 

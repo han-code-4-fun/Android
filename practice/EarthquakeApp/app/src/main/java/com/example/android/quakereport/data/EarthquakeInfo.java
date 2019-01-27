@@ -1,4 +1,4 @@
-package com.example.android.quakereport;
+package com.example.android.quakereport.data;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
