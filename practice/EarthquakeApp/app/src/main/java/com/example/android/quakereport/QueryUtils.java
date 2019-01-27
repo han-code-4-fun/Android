@@ -64,8 +64,6 @@ public final class QueryUtils {
                 JSONObject current = features.getJSONObject(i);
                 JSONObject properties = current.getJSONObject("properties");
 
-
-
                 EarthquakeInfo thisInfo = new EarthquakeInfo(
                         properties.getDouble("mag"),
                         properties.getString("place"),
