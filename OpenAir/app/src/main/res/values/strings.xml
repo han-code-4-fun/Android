@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">OpenAir</string>
+    <string name="action_bar_location_activity">Locations</string>
+    <string name="action_bar_measurement_activity">Details</string>
     <string name="btn_flash">Skip</string>
     <string name="btn_submit">Click to see</string>
     <string name="btn_detail_measurement">Refresh</string>

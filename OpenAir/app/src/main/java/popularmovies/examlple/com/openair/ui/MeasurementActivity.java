@@ -62,6 +62,8 @@ public class MeasurementActivity extends AppCompatActivity {
 
     private void layoutInitialization()
     {
+
+
         progressBar = findViewById(R.id.progressView_measurement);
         progressBar.setVisibility(View.VISIBLE);
 

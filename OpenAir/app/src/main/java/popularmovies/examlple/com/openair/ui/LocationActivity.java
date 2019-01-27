@@ -3,6 +3,7 @@ package popularmovies.examlple.com.openair.ui;
 import Data.Location;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import asynctask.LocationAsyncTask;
@@ -12,6 +13,7 @@ import recyclerview.LocationAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -38,8 +40,6 @@ public class LocationActivity extends AppCompatActivity
 
         recyclerViewInitilization();
 
-
-
         Intent intent = getIntent();
 
         //getting data from last activity and query in the background in the firstplace
@@ -62,6 +62,7 @@ public class LocationActivity extends AppCompatActivity
         }
 
     }
+
 
 
     //this allows program navigates to measurement activity based on different
@@ -96,4 +97,6 @@ public class LocationActivity extends AppCompatActivity
         recyclerView.setLayoutManager(rvLayoutManager);
         recyclerView.setAdapter(locationAdapter);
     }
+
+
 }

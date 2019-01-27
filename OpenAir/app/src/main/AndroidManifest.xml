@@ -32,10 +32,22 @@
 
         <activity
             android:name=".ui.LocationActivity"
-            android:parentActivityName=".ui.CountryActivity"></activity>
+            android:parentActivityName=".ui.CountryActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="popularmovies.examlple.com.openair.ui.CountryActivity" />
+
+        </activity>
 
         <activity android:name=".ui.MeasurementActivity"
-            android:parentActivityName=".ui.LocationActivity"></activity>
+            android:parentActivityName=".ui.LocationActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="popularmovies.examlple.com.openair.ui.LocationActivity" />
+
+        </activity>
 
     </application>
 
