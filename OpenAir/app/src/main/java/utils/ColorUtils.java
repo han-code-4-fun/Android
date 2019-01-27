@@ -7,7 +7,7 @@ import popularmovies.examlple.com.openair.R;
 
 public class ColorUtils {
 
-    //class designed to return different data based on user input
+    //class designed to return different color based on polution type and its value
 
     public static int getColor(Context context, double value, String paramType)
     {
@@ -18,19 +18,19 @@ public class ColorUtils {
 
     public static int getViewHolderBackgroundColorFromLevel(Context context, int value) {
         switch (value) {
-            case 0:
-                return ContextCompat.getColor(context, R.color.color_level_1);
             case 1:
-                return ContextCompat.getColor(context, R.color.color_level_2);
+                return ContextCompat.getColor(context, R.color.color_level_1);
             case 2:
-                return ContextCompat.getColor(context, R.color.color_level_3);
+                return ContextCompat.getColor(context, R.color.color_level_2);
             case 3:
-                return ContextCompat.getColor(context, R.color.color_level_4);
+                return ContextCompat.getColor(context, R.color.color_level_3);
             case 4:
-                return ContextCompat.getColor(context, R.color.color_level_5);
+                return ContextCompat.getColor(context, R.color.color_level_4);
             case 5:
+                return ContextCompat.getColor(context, R.color.color_level_5);
+            case 6:
                 return ContextCompat.getColor(context, R.color.color_level_6);
-            case -1:
+            case 0:
                 return ContextCompat.getColor(context, R.color.color_level_na);
             default:
                 return ContextCompat.getColor(context, R.color.color_level_default);
@@ -47,7 +47,7 @@ public class ColorUtils {
             case "SO2":
                 level = getLevel(value,40,80,380,800,1600);
                 break;
-            case "PM2.5":
+            case "PM25":
                 level = getLevel(value,30,60,90,120,250);
                 break;
             case "PM10":
@@ -60,9 +60,9 @@ public class ColorUtils {
                 level = getLevel(value,40,80,180,280,400);
                 break;
             case "CO":
-                level = getLevel(value,1,2,10,17,34);
+                level = getLevel(value,50,100,200,300,400);
                 break;
-            //No level for this parameter!!!!!!!!!!
+            //Don't find a color level for this value
             case "BC":
                 level = -1;
                 break;
