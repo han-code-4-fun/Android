@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".ui.FlashActivity">
+        <activity android:name=".ui.FlashActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,7 +22,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.CountryActivity" >
+        <activity android:name=".ui.CountryActivity"
+
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,7 +35,8 @@
 
         <activity
             android:name=".ui.LocationActivity"
-            android:parentActivityName=".ui.CountryActivity">
+            android:parentActivityName=".ui.CountryActivity"
+            android:launchMode="singleTop">
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -41,7 +45,8 @@
         </activity>
 
         <activity android:name=".ui.MeasurementActivity"
-            android:parentActivityName=".ui.LocationActivity">
+            android:parentActivityName=".ui.LocationActivity"
+            android:launchMode="singleTop">
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
