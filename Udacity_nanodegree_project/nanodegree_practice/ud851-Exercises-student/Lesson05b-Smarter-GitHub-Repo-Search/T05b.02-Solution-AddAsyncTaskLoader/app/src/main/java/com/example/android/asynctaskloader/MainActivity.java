@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements
          * search text was entered but the search button was clicked, we will display a message
          * stating that there is nothing to search for and we will not attempt to load anything.
          *
-         * If there is text entered in the search box when the search button was clicked, we will
+         *  If there is text entered in the search box when the search button was clicked, we will
          * create the URL that will return our Github search results, display that URL, and then
          * pass that URL to the Loader. The reason we pass the URL as a String is simply a matter
          * of convenience. There are other ways of achieving this same result, but we felt this
