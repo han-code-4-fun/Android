@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "E:\\GitHub\\Android\\Udacity_nanodegree_project\\nanodegree_practice\\ud851-Exercises-student\\Lesson06-Visualizer-Preferences\\T06.02-Exercise-MakeAPreferenceFragment\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-watch-v20\\values-watch-v20.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Alecn\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-1.0.0.aar\\c57716777143ceb97b9f03141cebc32e\\res\\values-watch-v20\\values-watch-v20.xml",
+                    "from": {
+                        "startLines": "2,5,8",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,214,385",
+                        "endLines": "4,7,10",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "209,380,553"
+                    }
+                }
+            ]
+        }
+    ]
+}

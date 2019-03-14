@@ -1,0 +1,60 @@
+{
+    "logs": [
+        {
+            "outputFile": "E:\\GitHub\\Android\\Udacity_nanodegree_project\\nanodegree_practice\\ud851-Exercises-student\\Lesson06-Visualizer-Preferences\\T06.02-Exercise-MakeAPreferenceFragment\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh-rHK\\values-zh-rHK.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Alecn\\.gradle\\caches\\transforms-1\\files-1.1\\preference-1.0.0.aar\\21adb3cff94207622d9b0490c7cb455f\\res\\values-zh-rHK\\values-zh-rHK.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "105,186,354,433",
+                        "endColumns": "80,167,78,75",
+                        "endOffsets": "181,349,428,504"
+                    },
+                    "to": {
+                        "startLines": "31,34,35,36",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "2860,3121,3289,3368",
+                        "endColumns": "80,167,78,75",
+                        "endOffsets": "2936,3284,3363,3439"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Alecn\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.1.0.aar\\319f327f1fbd087a3ca54949ee805264\\res\\values-zh-rHK\\values-zh-rHK.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,150,257,380,473,573,655,752,860,936,1012,1090,1186,1282,1377,1474,1569,1667,1780,1874,1952",
+                        "endColumns": "94,106,122,92,99,81,96,107,75,75,77,95,95,94,96,94,97,112,93,77,101",
+                        "endOffsets": "145,252,375,468,568,650,747,855,931,1007,1085,1181,1277,1372,1469,1564,1662,1775,1869,1947,2049"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,22,23,24,25,26,27,28,29,30,32,33",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,200,307,430,523,623,705,802,910,986,1998,2076,2172,2268,2363,2460,2555,2653,2766,2941,3019",
+                        "endColumns": "94,106,122,92,99,81,96,107,75,75,77,95,95,94,96,94,97,112,93,77,101",
+                        "endOffsets": "195,302,425,518,618,700,797,905,981,1057,2071,2167,2263,2358,2455,2550,2648,2761,2855,3014,3116"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Alecn\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-1.0.0.aar\\c57716777143ceb97b9f03141cebc32e\\res\\values-zh-rHK\\values-zh-rHK.xml",
+                    "from": {
+                        "startLines": "10,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "832,924,1018,1110,1206,1302,1396,1492,1584,1676",
+                        "endColumns": "91,93,91,95,95,93,95,91,91,91",
+                        "endOffsets": "919,1013,1105,1201,1297,1391,1487,1579,1671,1763"
+                    },
+                    "to": {
+                        "startLines": "12,13,14,15,16,17,18,19,20,21",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1062,1154,1248,1340,1436,1532,1626,1722,1814,1906",
+                        "endColumns": "91,93,91,95,95,93,95,91,91,91",
+                        "endOffsets": "1149,1243,1335,1431,1527,1621,1717,1809,1901,1993"
+                    }
+                }
+            ]
+        }
+    ]
+}

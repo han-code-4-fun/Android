@@ -1,0 +1,58 @@
+{
+    "logs": [
+        {
+            "outputFile": "E:\\GitHub\\Android\\Udacity_nanodegree_project\\nanodegree_practice\\ud851-Exercises-student\\Lesson06-Visualizer-Preferences\\T06.02-Exercise-MakeAPreferenceFragment\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v17\\values-v17.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Alecn\\.gradle\\caches\\transforms-1\\files-1.1\\preference-1.0.0.aar\\21adb3cff94207622d9b0490c7cb455f\\res\\values-v17\\values-v17.xml",
+                    "from": {
+                        "startLines": "2,7,11",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,280,441",
+                        "endLines": "6,10,14",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "275,436,604"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Alecn\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-1.0.0.aar\\c57716777143ceb97b9f03141cebc32e\\res\\values-v17\\values-v17.xml",
+                    "from": {
+                        "startLines": "18,22,29",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "936,1161,1559",
+                        "endLines": "21,24,32",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "1156,1326,1778"
+                    },
+                    "to": {
+                        "startLines": "31,35,42",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "1490,1715,2113",
+                        "endLines": "34,37,45",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "1710,1880,2332"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Alecn\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.1.0.aar\\319f327f1fbd087a3ca54949ee805264\\res\\values-v17\\values-v17.xml",
+                    "from": {
+                        "startLines": "2,5,9,12,15,18,22,26,29,32,35,39,42,46",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,228,456,614,764,936,1164,1406,1577,1751,1920,2193,2393,2597",
+                        "endLines": "4,8,11,14,17,21,25,28,31,34,38,41,45,49",
+                        "endColumns": "12,12,12,12,12,12,12,12,12,12,12,12,12,12",
+                        "endOffsets": "223,451,609,759,931,1159,1401,1572,1746,1915,2188,2388,2592,2921"
+                    },
+                    "to": {
+                        "startLines": "15,18,22,25,28,38,46,50,53,56,59,63,66,70",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "609,782,1010,1168,1318,1885,2337,2579,2750,2924,3093,3366,3566,3770",
+                        "endLines": "17,21,24,27,30,41,49,52,55,58,62,65,69,73",
+                        "endColumns": "12,12,12,12,12,12,12,12,12,12,12,12,12,12",
+                        "endOffsets": "777,1005,1163,1313,1485,2108,2574,2745,2919,3088,3361,3561,3765,4094"
+                    }
+                }
+            ]
+        }
+    ]
+}

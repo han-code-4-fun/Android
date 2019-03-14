@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "E:\\GitHub\\Android\\Udacity_nanodegree_project\\nanodegree_practice\\ud851-Exercises-student\\Lesson06-Visualizer-Preferences\\T06.02-Exercise-MakeAPreferenceFragment\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw360dp-v13\\values-sw360dp-v13.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Alecn\\.gradle\\caches\\transforms-1\\files-1.1\\preference-1.0.0.aar\\21adb3cff94207622d9b0490c7cb455f\\res\\values-sw360dp-v13\\values-sw360dp-v13.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,127",
+                        "endColumns": "71,64",
+                        "endOffsets": "122,187"
+                    }
+                }
+            ]
+        }
+    ]
+}
