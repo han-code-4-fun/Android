@@ -46,6 +46,7 @@ public class VisualizerActivity extends AppCompatActivity {
         mVisualizerView = (VisualizerView) findViewById(R.id.activity_visualizer);
         setupSharedPreferences();
         setupPermissions();
+
     }
 
     //  (1) Change the name of default setup to setupSharedPreferences
@@ -114,7 +115,8 @@ public class VisualizerActivity extends AppCompatActivity {
      **/
     private void setupPermissions() {
         // If we don't have the record audio permission...
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
+                != PackageManager.PERMISSION_GRANTED) {
             // And if we're on SDK M or later...
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 // Ask again, nicely, for the permissions.

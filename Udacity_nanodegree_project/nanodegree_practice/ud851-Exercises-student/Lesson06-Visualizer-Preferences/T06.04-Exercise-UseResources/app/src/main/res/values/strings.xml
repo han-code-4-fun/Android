@@ -6,7 +6,12 @@
     <!-- - - - - - - - - - - - - - - -
           - Used by Preferences  -
           - - - - - - - - - - - - - - - -->
-    <!-- TODO (1) Add Strings for checkbox preference -->
+    <!--  (1) Add Strings for checkbox preference -->
+
+    <string name="pre_checkbox_key_bass">show_bass</string>
+    <string name="pre_checkbox_title_bass">Show Bass</string>
+    <string name="pre_checkbox_sum_on">Shown</string>
+    <string name="pre_checkbox_sum_off">Hidden</string>
 
     <!-- Value in SharedPreferences for red color option -->
     <string name="pref_color_red_value" translatable="false">red</string>

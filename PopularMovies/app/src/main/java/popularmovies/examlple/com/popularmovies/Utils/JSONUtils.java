@@ -25,7 +25,7 @@ public final class JSONUtils {
     public static ArrayList<Movie> getMovies(String sortFilter)
     {
         URL url = MyURL.createURL(sortFilter);
-        ArrayList<Movie> output = new ArrayList<>();
+            ArrayList<Movie> output = new ArrayList<>();
         try {
             Log.i(LOG_TAG, url.toString());
             String stringResult = NetworkUtils.getJSONFromURL(url);
