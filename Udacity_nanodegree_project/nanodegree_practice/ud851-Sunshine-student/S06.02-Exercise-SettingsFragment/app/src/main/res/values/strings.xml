@@ -38,6 +38,20 @@
         An error has occurred. Please try again by clicking REFRESH
     </string>
 
+    <string name="preference_et_default_value">Some Rd, SomeCity</string>
+    <string name="preference_et_key">et_addr_key</string>
+    <string name="preference_et_label">Address</string>
+
+    <string name="preference_lp_default_value">metric</string>
+    <string name="preference_lp_key">units</string>
+    <string name="preference_lp_title">Temperature Units</string>
+
+    <string name="preference_lp_array_label_cel">Celsius</string>
+    <string name="preference_lp_array_label_fahr">Fahrenheit</string>
+
+    <string name="preference_lp_array_key_cel">celsius</string>
+    <string name="preference_lp_array_key_fahr">fahrenheit</string>
+
 
     <!-- - - - - - - - - - - -->
     <!--Used by Preferences  -->

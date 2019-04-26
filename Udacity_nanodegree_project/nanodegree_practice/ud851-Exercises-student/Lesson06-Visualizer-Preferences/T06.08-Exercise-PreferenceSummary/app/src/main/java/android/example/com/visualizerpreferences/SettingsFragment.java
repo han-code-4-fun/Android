@@ -24,11 +24,13 @@ import android.support.v7.preference.EditTextPreference;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
+import android.support.v7.preference.PreferenceManager;
 import android.support.v7.preference.PreferenceScreen;
 import android.widget.Toast;
 
-// TODO (1) Implement OnSharedPreferenceChangeListener
-public class SettingsFragment extends PreferenceFragmentCompat {
+//  (1) Implement OnSharedPreferenceChangeListener
+public class SettingsFragment extends PreferenceFragmentCompat
+        implements OnSharedPreferenceChangeListener{
 
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
@@ -36,22 +38,66 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         // Add visualizer preferences, defined in the XML file in res->xml->pref_visualizer
         addPreferencesFromResource(R.xml.pref_visualizer);
 
-        // TODO (3) Get the preference screen, get the number of preferences and iterate through
+        //  (3) Get the preference screen, get the number of preferences and iterate through
         // all of the preferences if it is not a checkbox preference, call the setSummary method
         // passing in a preference and the value of the preference
+        PreferenceScreen preferenceScreen = getPreferenceScreen();
+        SharedPreferences sharedPreferences = getPreferenceScreen().getSharedPreferences();
+        int numberOfPScreen = preferenceScreen.getPreferenceCount();
+        for (int i = 0; i < numberOfPScreen; i++) {
+            Preference p = preferenceScreen.getPreference(i);
+            if(!(p instanceof CheckBoxPreference)){
+                String value = sharedPreferences.getString(p.getKey(), "");
+                setPreferenceSummary(p, value);
+            }
+        }
     }
 
-    // TODO (4) Override onSharedPreferenceChanged and, if it is not a checkbox preference,
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sp, String key) {
+        Preference p = findPreference(key);
+        if(p != null){
+            if(!(p instanceof CheckBoxPreference)){
+                String value = sp.getString(p.getKey(),"");
+                setPreferenceSummary(p,value);
+            }
+        }
+    }
+
+    //  (4) Override onSharedPreferenceChanged and, if it is not a checkbox preference,
     // call setPreferenceSummary on the changed preference
 
-    // TODO (2) Create a setPreferenceSummary which takes a Preference and String value as parameters.
+    //  (2) Create a setPreferenceSummary which takes a Preference and String value as parameters.
     // This method should check if the preference is a ListPreference and, if so, find the label
     // associated with the value. You can do this by using the findIndexOfValue and getEntries methods
     // of Preference.
+    public void setPreferenceSummary(Preference p, String value){
+        if(p instanceof ListPreference){
+            ListPreference listPreference = (ListPreference) p;
+            int index = listPreference.findIndexOfValue(value);
+            //if index is valid
+            if(index>=0){
+                listPreference.setSummary(listPreference.getEntries()[index]);
+            }
+        }
+    }
 
     // TODO (5) Register and unregister the OnSharedPreferenceChange listener (this class) in
     // onCreate and onDestroy respectively.
 
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getPreferenceScreen().
+                getSharedPreferences().
+                    registerOnSharedPreferenceChangeListener(this);
+    }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        getPreferenceScreen().getSharedPreferences().
+                unregisterOnSharedPreferenceChangeListener(this);
+    }
 }

@@ -24,4 +24,13 @@
         <item>@string/pref_units_metric</item>
         <item>@string/pref_units_imperial</item>
     </string-array>
+
+    <array name="preference_lp_array_label">
+        <item>@string/preference_lp_array_label_fahr</item>
+        <item>@string/preference_lp_array_label_cel</item>
+    </array>
+    <array name="preference_lp_array_values">
+        <item>@string/preference_lp_array_key_fahr</item>
+        <item>@string/preference_lp_array_key_cel</item>
+    </array>
 </resources>

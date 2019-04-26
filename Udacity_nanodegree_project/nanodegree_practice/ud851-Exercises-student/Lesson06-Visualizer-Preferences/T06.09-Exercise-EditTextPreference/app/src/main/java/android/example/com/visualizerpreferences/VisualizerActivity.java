@@ -33,7 +33,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class VisualizerActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class VisualizerActivity extends AppCompatActivity
+        implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final int MY_PERMISSION_RECORD_AUDIO_REQUEST_CODE = 88;
     private VisualizerView mVisualizerView;
@@ -48,7 +49,7 @@ public class VisualizerActivity extends AppCompatActivity implements SharedPrefe
         setupPermissions();
     }
 
-    // TODO (2) Modify the setupSharedPreferences method and onSharedPreferencesChanged method to
+    //  (2) Modify the setupSharedPreferences method and onSharedPreferencesChanged method to
     // properly update the minSizeScale, assuming a proper numerical value is saved in shared preferences
     private void setupSharedPreferences() {
         // Get all of the values from shared preferences to set it up
@@ -61,8 +62,17 @@ public class VisualizerActivity extends AppCompatActivity implements SharedPrefe
                 getResources().getBoolean(R.bool.pref_show_treble_default)));
         mVisualizerView.setMinSizeScale(1);
         loadColorFromPreferences(sharedPreferences);
+        loadSizeFromPreference(sharedPreferences);
         // Register the listener
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+    }
+
+    private void loadSizeFromPreference(SharedPreferences sharedPreferences){
+        float size = Float.parseFloat(sharedPreferences.getString(
+                getString(R.string.pref_size_key),
+                getString(R.string.pref_size_value_default)));
+
+        mVisualizerView.setMinSizeScale(size);
     }
 
     private void loadColorFromPreferences(SharedPreferences sharedPreferences) {
@@ -82,6 +92,8 @@ public class VisualizerActivity extends AppCompatActivity implements SharedPrefe
             mVisualizerView.setShowTreble(sharedPreferences.getBoolean(key, getResources().getBoolean(R.bool.pref_show_treble_default)));
         } else if (key.equals(getString(R.string.pref_color_key))) {
             loadColorFromPreferences(sharedPreferences);
+        }else if (key.equals(getString(R.string.pref_size_key))){
+            loadSizeFromPreference(sharedPreferences);
         }
     }
 

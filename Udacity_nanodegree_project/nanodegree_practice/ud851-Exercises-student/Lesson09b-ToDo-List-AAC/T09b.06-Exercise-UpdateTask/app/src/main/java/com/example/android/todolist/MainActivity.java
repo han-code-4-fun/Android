@@ -141,6 +141,11 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.ItemC
     @Override
     public void onItemClickListener(int itemId) {
         // Launch AddTaskActivity adding the itemId as an extra in the intent
-        // TODO (2) Launch AddTaskActivity with itemId as extra for the key AddTaskActivity.EXTRA_TASK_ID
+        //  (2) Launch AddTaskActivity with itemId as
+        // extra for the key AddTaskActivity.EXTRA_TASK_ID
+        Intent launchAddtaskActivity = new Intent(this, AddTaskActivity.class);
+        launchAddtaskActivity.putExtra(AddTaskActivity.EXTRA_TASK_ID, itemId);
+
+        startActivity(launchAddtaskActivity);
     }
 }
