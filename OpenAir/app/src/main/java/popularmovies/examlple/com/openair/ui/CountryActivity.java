@@ -1,25 +1,17 @@
 package popularmovies.examlple.com.openair.ui;
 
-import Data.City;
-import Data.Country;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import androidx.constraintlayout.widget.ConstraintLayout;
+import popularmovies.examlple.com.openair.Services.TestFirebaseJobUtil;
 import asynctask.CityAsyncTask;
 import asynctask.CountryAsyncTask;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import popularmovies.examlple.com.openair.R;
-import utils.JSONUtils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -32,7 +24,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CountryActivity extends AppCompatActivity {
 
@@ -69,6 +60,7 @@ public class CountryActivity extends AppCompatActivity {
 
         numOfTimesBackPressed = 0;
 
+        TestFirebaseJobUtil.scheduleFirebaseJob(this);
 
 
         if(myNetInfo != null && myNetInfo.isConnected())

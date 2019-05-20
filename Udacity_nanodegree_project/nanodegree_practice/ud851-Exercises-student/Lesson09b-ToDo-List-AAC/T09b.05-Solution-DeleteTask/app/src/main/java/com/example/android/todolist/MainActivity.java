@@ -34,7 +34,8 @@ import java.util.List;
 import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
 
 
-public class MainActivity extends AppCompatActivity implements TaskAdapter.ItemClickListener {
+public class MainActivity extends AppCompatActivity
+        implements TaskAdapter.ItemClickListener {
 
     // Constant for logging
     private static final String TAG = MainActivity.class.getSimpleName();

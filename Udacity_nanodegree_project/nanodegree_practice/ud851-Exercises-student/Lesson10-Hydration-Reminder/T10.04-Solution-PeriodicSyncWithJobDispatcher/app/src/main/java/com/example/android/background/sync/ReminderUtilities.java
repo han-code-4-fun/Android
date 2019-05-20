@@ -111,7 +111,7 @@ public class ReminderUtilities {
                  */
                 .setTrigger(Trigger.executionWindow(
                         REMINDER_INTERVAL_SECONDS,
-                        REMINDER_INTERVAL_SECONDS + SYNC_FLEXTIME_SECONDS))
+                        REMINDER_INTERVAL_SECONDS+SYNC_FLEXTIME_SECONDS))
                 /*
                  * If a Job with the tag with provided already exists, this new job will replace
                  * the old one.

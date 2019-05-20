@@ -113,7 +113,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showDefinition() {
+
         // COMPLETED (4) Show the definition
+
         if (mData != null) {
             // Show the definition TextView
             mDefinitionTextView.setVisibility(View.VISIBLE);
@@ -127,7 +129,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+
         super.onDestroy();
+
         // COMPLETED (5) Remember to close your cursor!
         mData.close();
     }

@@ -122,7 +122,6 @@ public class MainActivity extends AppCompatActivity {
             return cursor;
         }
 
-
         // Invoked on UI thread
         @Override
         protected void onPostExecute(Cursor cursor) {

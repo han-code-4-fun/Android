@@ -53,6 +53,14 @@
                 android:value="popularmovies.examlple.com.openair.ui.LocationActivity" />
 
         </activity>
+        <service
+            android:name=".Services.TestFirebaseJobService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
+            </intent-filter>
+        </service>
+
 
     </application>
 

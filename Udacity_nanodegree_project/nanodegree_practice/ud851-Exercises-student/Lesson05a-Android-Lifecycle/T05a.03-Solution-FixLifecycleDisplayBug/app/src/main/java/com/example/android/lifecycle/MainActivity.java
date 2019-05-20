@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String ON_STOP = "onStop";
     private static final String ON_RESTART = "onRestart";
     private static final String ON_DESTROY = "onDestroy";
-    private static final String ON_SAVE_INSTANCE_STATE = "onSaveInstanceState";
+    private static final String ON_SAVE_INSTANCE_STATE = "onSaveInstanceStateAAAAAAA";
 
     /*
      * This TextView will contain a running log of every lifecycle callback method called from this
