@@ -109,14 +109,13 @@
         <!-- COMPLETED (16) Create an ImageView for the plane and set the background to art_plane drawable -->
         <ImageView
             android:id="@+id/imagePlane"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/art_plane"
             app:layout_constraintBottom_toTopOf="@+id/divider"
             app:layout_constraintLeft_toRightOf="@+id/leftRectangle"
-            app:layout_constraintRight_toLeftOf="@+id/rightRectangle"
-            android:layout_marginBottom="16dp"
-            />
+            app:layout_constraintRight_toLeftOf="@+id/rightRectangle" />
 
 
         <TextView

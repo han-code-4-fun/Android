@@ -13,4 +13,8 @@
     <!-- Create a new color, colorPrimaryLight that is #D1C4E9 -->
     <color name="colorPrimaryLight">#D1C4E9</color>
 
+    <color name="colorTest1">#EC407A</color>
+    <color name="colorTest2">#42A5F5</color>
+    <color name="colorTest3">#FF6F00</color>
+
 </resources>
