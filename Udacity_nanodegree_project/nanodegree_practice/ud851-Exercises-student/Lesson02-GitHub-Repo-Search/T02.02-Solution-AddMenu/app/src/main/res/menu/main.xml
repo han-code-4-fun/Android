@@ -25,7 +25,12 @@
     <!--COMPLETED (7) Set the title to the search string ("Search") from strings.xml-->
     <item
         android:id="@+id/action_search"
-        android:orderInCategory="1"
-        app:showAsAction="ifRoom"
+        android:orderInCategory="2"
+        app:showAsAction="never"
         android:title="@string/search"/>
+    <item
+        android:id="@+id/action_ranodm"
+        android:orderInCategory="1"
+        app:showAsAction="never"
+        android:title="random"/>
 </menu>

@@ -59,6 +59,9 @@ public class VisualizerActivity extends AppCompatActivity {
         mVisualizerView.setShowTreble(true);
         mVisualizerView.setMinSizeScale(1);
         mVisualizerView.setColor(getString(R.string.pref_color_red_value));
+
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
     }
 
     /**

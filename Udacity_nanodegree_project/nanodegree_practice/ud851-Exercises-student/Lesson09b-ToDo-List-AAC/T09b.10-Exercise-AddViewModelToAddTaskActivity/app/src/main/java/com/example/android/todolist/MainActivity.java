@@ -19,6 +19,7 @@ package com.example.android.todolist;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -32,6 +33,7 @@ import android.view.View;
 
 import com.example.android.todolist.database.AppDatabase;
 import com.example.android.todolist.database.TaskEntry;
+import com.example.android.todolist.receiver.MyTestSMSReceiver;
 
 import java.util.List;
 
@@ -47,6 +49,9 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.ItemC
     private TaskAdapter mAdapter;
 
     private AppDatabase mDb;
+
+    //test Custom Receiver
+    MyTestSMSReceiver smsReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,5 +135,23 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.ItemC
         Intent intent = new Intent(MainActivity.this, AddTaskActivity.class);
         intent.putExtra(AddTaskActivity.EXTRA_TASK_ID, itemId);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        IntentFilter getMSGFilter = new IntentFilter();
+        getMSGFilter.addAction(android.provider.Telephony.Sms.Intents.DATA_SMS_RECEIVED_ACTION);
+
+        smsReceiver = new MyTestSMSReceiver();
+
+        registerReceiver(smsReceiver,getMSGFilter);
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(smsReceiver);
     }
 }

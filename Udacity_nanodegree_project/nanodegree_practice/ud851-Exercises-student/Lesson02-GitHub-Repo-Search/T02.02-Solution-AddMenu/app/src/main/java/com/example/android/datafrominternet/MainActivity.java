@@ -65,6 +65,11 @@ public class MainActivity extends AppCompatActivity {
             String textToShow = "Search clicked";
             Toast.makeText(context, textToShow, Toast.LENGTH_SHORT).show();
             return true;
+        }else if(itemThatWasClickedId == R.id.action_ranodm){
+            Context context = MainActivity.this;
+            String textToShow = "random clicked";
+            Toast.makeText(context, textToShow, Toast.LENGTH_SHORT).show();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

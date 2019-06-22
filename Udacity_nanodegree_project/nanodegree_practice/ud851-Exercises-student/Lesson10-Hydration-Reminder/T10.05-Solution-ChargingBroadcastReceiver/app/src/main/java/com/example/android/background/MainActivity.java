@@ -23,6 +23,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -170,6 +171,7 @@ public class MainActivity extends AppCompatActivity implements
         // charging.
         @Override
         public void onReceive(Context context, Intent intent) {
+            Log.d("hehe", "received intent");
             String action = intent.getAction();
             boolean isCharging = (action.equals(Intent.ACTION_POWER_CONNECTED));
 
