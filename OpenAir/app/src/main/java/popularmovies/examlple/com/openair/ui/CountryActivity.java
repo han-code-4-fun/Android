@@ -121,7 +121,7 @@ public class CountryActivity extends AppCompatActivity {
 
         cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         //get current network info
-        myNetInfo = cm.getActiveNetworkInfo();
+        myNetInfo = cm.getActFsuiveNetworkInfo();
 
         emptyView = findViewById(R.id.emptyView);
 

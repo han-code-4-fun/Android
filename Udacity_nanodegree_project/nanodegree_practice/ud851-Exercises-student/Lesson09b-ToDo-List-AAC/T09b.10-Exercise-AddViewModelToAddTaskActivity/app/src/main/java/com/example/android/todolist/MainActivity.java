@@ -33,7 +33,7 @@ import android.view.View;
 
 import com.example.android.todolist.database.AppDatabase;
 import com.example.android.todolist.database.TaskEntry;
-import com.example.android.todolist.receiver.MyTestSMSReceiver;
+import com.example.android.todolist.test.TransactionDB;
 
 import java.util.List;
 
@@ -49,9 +49,8 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.ItemC
     private TaskAdapter mAdapter;
 
     private AppDatabase mDb;
-
+//    private TransactionDB mTransDb;
     //test Custom Receiver
-    MyTestSMSReceiver smsReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.ItemC
         });
 
         mDb = AppDatabase.getInstance(getApplicationContext());
+//        mTransDb = TransactionDB.getInstance(getApplicationContext());
         setupViewModel();
     }
 
@@ -122,9 +122,9 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.ItemC
         MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         viewModel.getTasks().observe(this, new Observer<List<TaskEntry>>() {
             @Override
-            public void onChanged(@Nullable List<TaskEntry> taskEntries) {
+        public void onChanged(@Nullable List<TaskEntry> taskEntries) {
                 Log.d(TAG, "Updating list of tasks from LiveData in ViewModel");
-                mAdapter.setTasks(taskEntries);
+            mAdapter.setTasks(taskEntries);
             }
         });
     }
@@ -140,18 +140,15 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.ItemC
     @Override
     protected void onResume() {
         super.onResume();
-        IntentFilter getMSGFilter = new IntentFilter();
-        getMSGFilter.addAction(android.provider.Telephony.Sms.Intents.DATA_SMS_RECEIVED_ACTION);
+//        IntentFilter getMSGFilter = new IntentFilter();
+//        getMSGFilter.addAction(android.provider.Telephony.Sms.Intents.DATA_SMS_RECEIVED_ACTION);
 
-        smsReceiver = new MyTestSMSReceiver();
 
-        registerReceiver(smsReceiver,getMSGFilter);
 
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        unregisterReceiver(smsReceiver);
     }
 }

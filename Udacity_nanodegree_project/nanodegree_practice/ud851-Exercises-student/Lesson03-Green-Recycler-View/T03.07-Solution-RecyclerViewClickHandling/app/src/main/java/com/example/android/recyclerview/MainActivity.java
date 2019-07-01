@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity
      * "pretty" state when the reset menu item is clicked.
      */
     private GreenAdapter mAdapter;
-    private RecyclerView mNumbersList;
+    private RecyclerView recyclerView;
 
     // COMPLETED (9) Create a Toast variable called mToast to store the current Toast
     /*
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity
          * Using findViewById, we get a reference to our RecyclerView from xml. This allows us to
          * do things like set the adapter of the RecyclerView and toggle the visibility.
          */
-        mNumbersList = (RecyclerView) findViewById(R.id.rv_numbers);
+        recyclerView = (RecyclerView) findViewById(R.id.rv_numbers);
 
         /*
          * A LinearLayoutManager is responsible for measuring and positioning item views within a
@@ -67,20 +67,20 @@ public class MainActivity extends AppCompatActivity
          * staggered grids, and more! See the developer documentation for more details.
          */
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        mNumbersList.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(layoutManager);
 
         /*
          * Use this setting to improve performance if you know that changes in content do not
          * change the child layout size in the RecyclerView
          */
-        mNumbersList.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(true);
 
         // COMPLETED (13) Pass in this as the CustomListItemClickListener to the GreenAdapter constructor
         /*
          * The GreenAdapter is responsible for displaying each item in the list.
          */
         mAdapter = new GreenAdapter(NUM_LIST_ITEMS, this);
-        mNumbersList.setAdapter(mAdapter);
+        recyclerView.setAdapter(mAdapter);
     }
 
     @Override
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.action_refresh:
                 // COMPLETED (14) Pass in this as the CustomListItemClickListener to the GreenAdapter constructor
                 mAdapter = new GreenAdapter(NUM_LIST_ITEMS, this);
-                mNumbersList.setAdapter(mAdapter);
+                recyclerView.setAdapter(mAdapter);
                 return true;
         }
 
