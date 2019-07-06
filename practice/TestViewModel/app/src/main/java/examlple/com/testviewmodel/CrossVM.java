@@ -8,19 +8,19 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class CrossVM extends ViewModel {
-    private MutableLiveData<Integer> countLiveData;
+    private MutableLiveData<Integer> countLiveData= new MutableLiveData<>();
 
     private int tempCount=0;
-    private SparseBooleanArray sparseBooleanArray;
-    private MutableLiveData<SparseBooleanArray> temp;
+    private SparseBooleanArray sparseBooleanArray= new SparseBooleanArray();
+    private MutableLiveData<SparseBooleanArray> temp= new MutableLiveData<>();
 
     public CrossVM() {
-        super();
-        countLiveData = new MutableLiveData<>();
         Log.d("testtest", "CrossVM: create  MutableLiveData");
-        temp = new MutableLiveData<>();
-        sparseBooleanArray = new SparseBooleanArray();
 
+    }
+
+    public CrossVM(String in){
+        Log.d("testtest", "CrossVM: constructor "+ in);
     }
 
     public void changeLocalSparseBooleanArray(){

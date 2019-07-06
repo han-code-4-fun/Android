@@ -74,8 +74,11 @@ public class FragmentBottom extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         crossVM= ViewModelProviders.of(getActivity()).get(CrossVM.class);
+        Log.d("flow", "onCreateView: crossVM hashcode is"+ crossVM.hashCode());
         crossTest = ViewModelProviders.of(this).get(CrossVM.class);
+        Log.d("flow", "onCreateView: crossTest hashcode is"+ crossTest.hashCode());
         cross3AsCrossVM = ViewModelProviders.of(getActivity()).get(CrossVM.class);
+        Log.d("flow", "onCreateView: cross3AsCrossVM hashcode is"+ cross3AsCrossVM.hashCode());
     }
 
     @Override

@@ -77,6 +77,8 @@ public class FragmentTop extends Fragment {
 
         final CrossVM crossVM = ViewModelProviders.of(getActivity()).get(CrossVM.class);
 
+        Log.d("flow", "onCreateView: crossVM hashcode is"+ crossVM.hashCode());
+
         final TextView textView = root.findViewById(R.id.textView_top);
 
         crossVM.getCountLiveData().observe(getActivity(), new Observer<Integer>() {

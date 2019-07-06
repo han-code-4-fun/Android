@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.Button;
@@ -19,8 +20,9 @@ implements FragmentBottom.FragmentBottomListener,
 
         setContentView(R.layout.activity_main);
 
-
-        final CrossVM crossVM = ViewModelProviders.of(this).get(CrossVM.class);
+        TestVMFactory factory = new TestVMFactory("anything");
+        final CrossVM crossVM = ViewModelProviders.of(this,factory).get(CrossVM.class);
+        Log.d("flow", "onCreate: crossVM in MainActivity is "+crossVM.hashCode());
         final Button btn = findViewById(R.id.button);
 
 
