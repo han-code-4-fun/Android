@@ -56,6 +56,7 @@ public class AddTaskActivity extends AppCompatActivity {
 
     private int mTaskId = DEFAULT_TASK_ID;
 
+
     // Member variable for the Database
     private AppDatabase mDb;
 

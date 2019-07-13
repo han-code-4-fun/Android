@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity
         recyclerView = findViewById(R.id.recyclerView);
 
         myGridlayout = new GridLayoutManager(
-                MainActivity.this, 2, RecyclerView.VERTICAL, false);
+                MainActivity.this, 3, RecyclerView.VERTICAL, false);
 
         recyclerView.setLayoutManager(myGridlayout);
 

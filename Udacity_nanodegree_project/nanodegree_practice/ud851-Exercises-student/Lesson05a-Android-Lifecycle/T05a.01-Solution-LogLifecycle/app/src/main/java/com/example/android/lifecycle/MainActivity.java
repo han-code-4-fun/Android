@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         logAndAppend(ON_CREATE);
     }
 
+
+
     // COMPLETED (2) Override onStart, call super.onStart, and call logAndAppend with ON_START
     /**
      * Called when the activity is becoming visible to the user.

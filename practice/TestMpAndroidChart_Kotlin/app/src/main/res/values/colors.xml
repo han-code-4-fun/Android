@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="color1">#D81B60</color>
+    <color name="color2">#2BD331</color>
+    <color name="color3">#BA2DD1</color>
+    <color name="color4">#4AAEDD</color>
+    <color name="color5">#F1C231</color>
+
+    <color name="color_barset_shadow_color">#00FFE6</color>
+</resources>
