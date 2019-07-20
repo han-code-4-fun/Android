@@ -50,6 +50,7 @@
     <!-- Key name for color preference in SharedPreferences -->
     <string name="pref_color_key" translatable="false">color</string>
 
+
     <!-- Value in SharedPreferences for red color option -->
     <string name="pref_color_red_value" translatable="false">red</string>
 

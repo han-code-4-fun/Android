@@ -35,6 +35,7 @@ import com.example.android.todolist.database.AppDatabase;
 import com.example.android.todolist.database.TaskEntry;
 import com.example.android.todolist.test.TransactionDB;
 
+import java.util.Collections;
 import java.util.List;
 
 import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.ItemC
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+
                 return false;
             }
 
