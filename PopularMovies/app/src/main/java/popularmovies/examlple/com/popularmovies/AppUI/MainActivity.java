@@ -21,6 +21,7 @@ import popularmovies.examlple.com.popularmovies.Data.Movie;
 import popularmovies.examlple.com.popularmovies.AppRecyclerView.MyAdapter;
 import popularmovies.examlple.com.popularmovies.MyAsyncTask.MovieLoadAsyncTask;
 import popularmovies.examlple.com.popularmovies.R;
+import popularmovies.examlple.com.popularmovies.Utils.JSONUtils;
 import popularmovies.examlple.com.popularmovies.Utils.MyURL;
 
 public class MainActivity extends AppCompatActivity
@@ -51,18 +52,26 @@ public class MainActivity extends AppCompatActivity
 
         initilizeLayout();
 
-        if(myNetInfo != null && myNetInfo.isConnected())
-        {
-            MovieLoadAsyncTask loadMovies = new MovieLoadAsyncTask(movieList, myAdapter, progressBar);
-            //default is to fetch movies that is sort by their popularities
-            loadMovies.execute(MyURL.getPopFilter());
-        }else
-        {
-            //handle completely no internet situation
-            progressBar.setVisibility(View.VISIBLE);
-//            errorTX.setText("No internet connection");
-//            errorTX.setVisibility(View.VISIBLE);
-        }
+//        if(myNetInfo != null && myNetInfo.isConnected())
+//        {
+//            MovieLoadAsyncTask loadMovies = new MovieLoadAsyncTask(movieList, myAdapter, progressBar);
+//            //default is to fetch movies that is sort by their popularities
+//            loadMovies.execute(MyURL.getPopFilter());
+//        }else
+//        {
+//            //handle completely no internet situation
+//            progressBar.setVisibility(View.VISIBLE);
+////            errorTX.setText("No internet connection");
+////            errorTX.setVisibility(View.VISIBLE);
+//        }
+
+
+        progressBar.setVisibility(View.INVISIBLE);
+        movieList.clear();
+
+        JSONUtils.getMovies(MyURL.getPopFilter(),myAdapter);
+//        movieList.addAll(movies);
+
 
     }
 
@@ -75,21 +84,21 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int menuID = item.getItemId();
-        MovieLoadAsyncTask loadMovies;
-        switch(menuID){
-            case R.id.submenu_popular:
-                //sort by popularity
-                loadMovies = new MovieLoadAsyncTask(movieList, myAdapter, progressBar);
-                loadMovies.execute(MyURL.getPopFilter());
-                return true;
-
-            case R.id.submenu_rating:
-                //sort by rating
-                loadMovies = new MovieLoadAsyncTask(movieList, myAdapter, progressBar);
-                loadMovies.execute(MyURL.getRatingFilter());
-                return true;
-
-        }
+//        MovieLoadAsyncTask loadMovies;
+//        switch(menuID){
+//            case R.id.submenu_popular:
+//                //sort by popularity
+//                loadMovies = new MovieLoadAsyncTask(movieList, myAdapter, progressBar);
+//                loadMovies.execute(MyURL.getPopFilter());
+//                return true;
+//
+//            case R.id.submenu_rating:
+//                //sort by rating
+//                loadMovies = new MovieLoadAsyncTask(movieList, myAdapter, progressBar);
+//                loadMovies.execute(MyURL.getRatingFilter());
+//                return true;
+//
+//        }
 
         return super.onOptionsItemSelected(item);
     }

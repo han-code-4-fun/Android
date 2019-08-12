@@ -54,6 +54,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>
 
     }
 
+    public void setData(List<Movie> input){
+        movieList.clear();
+        movieList = input;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return movieList.size();

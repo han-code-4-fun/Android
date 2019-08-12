@@ -32,7 +32,8 @@ public class MovieLoadAsyncTask extends AsyncTask<String,Void, ArrayList<Movie>>
             return null;
         }
 
-        return JSONUtils.getMovies(strings[0]);
+//        return JSONUtils.getMovies(strings[0]);
+        return null;
     }
 
     @Override
