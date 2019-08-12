@@ -95,7 +95,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void customOnListItemClick(int clickedItemIndex) {
+    public void customOnListItemClick(int clickedItemIndex)
+    {
 
         Movie clickedMovie =movieList.get(clickedItemIndex);
 
